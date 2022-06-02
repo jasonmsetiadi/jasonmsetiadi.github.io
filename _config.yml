@@ -53,3 +53,5 @@ plugins:
   - jekyll-avatar
   - jekyll-github-metadata
   - jekyll-feed
+
+theme: jekyll-theme-cayman
