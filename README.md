@@ -1,4 +1,4 @@
-# Jason M. Setiadi's Portofolio
+# Jason M. Setiadi's Personal Website
 Portofolio showcasing different projects I have done
 
 # 1. Graph-Based Active Learning Research Project
