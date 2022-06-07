@@ -8,6 +8,18 @@ The outcome of this research led me to build a python module for my research pro
 ## [2. Astronomy Active Learning Project](https://github.com/ZwickyTransientFacility/scope)
 In this project, I worked as a undergraduate research assistant for Dr. Michael Coughlin's astronomy group called *Coughlin Multi-Messenger Astronomy Group*. In general, my work is about performing active learning to identify ambiguous light curve objects, from selecting points to label, labeling them by hand, and uploading the labeled data to the source website called [Fritz](https://fritz.science/). Some skills involved in this process include data manipulation using *Pandas* and usage of *Rest APIs* to create and filter processed data sets using a *MongoDB* framework. All work in this group can be viewed through the link on the project title that will lead to the github page. Some of my contributions include creating Python scripts to [find ambiguous objects](https://github.com/ZwickyTransientFacility/scope/blob/main/tools/scope_upload_disagreements.py), [upload labeled objects](https://github.com/ZwickyTransientFacility/scope/blob/main/tools/scope_upload_classification.py), as well as [download labeled objects](https://github.com/ZwickyTransientFacility/scope/blob/main/tools/scope_download_classification.py).
 
-## 3. Independent Research Project: Logistic Regression vs Perceptron
+## 3. Capstone Projects
 
-## 4. Statistical Consultation Project: Effect of Wood Harvesting on *Bursera Simaruba* Population
+### [Independent Research Project: Logistic Regression vs Perceptron](Research.pdf)
+This project asks each student to do their own independent research on some topic of their choice in statistics. I chose to research about the connections between logistic regression and perceptron, contrasting their similarities and differences, since I find them to be interesting and worth noting. Besides discussing the theory behind these two techniques, I also applied them to a famous [US Census dataset](https://archive.ics.uci.edu/ml/datasets/adult) to observe their performance. Here is the summary of my research presented in a table. For more details regarding my research, click on the link on the title.
+
+|                          | **Logistic Regression** | **Perceptron** |
+|--------------------------|:-----------------------:|:--------------:|
+| **Number of Parameters** |           p+1           |     2*(p+1)    |
+| **Activation Function**  |     Logistic/Sigmoid    |     Softmax    |
+| **Output**               |     Continuous [0,1]    | Discrete {0,1} |
+| **Assumptions**          |           Yes           |       No       |
+| **Interpretable**        |           Yes           |       No       |
+
+### [Statistical Consultation Project: Effect of Wood Harvesting on *Bursera Simaruba* Population](Consulting.pdf)
+In this project, we are trying to answer several research questions that a PhD student has regarding her dataset. Our task is to perform statistical analyses to observe any significance caused by predictors of interest (whether the plot has been harvested, plot's vegetation type, and whether the plot adopts *Milpa* agricultural system) on different response variables (basal area, stem density, and population size structure). In general, we use the ANOVA to observe any significant effects as well as ggplot to perform visualizations to gain more insight.
