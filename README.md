@@ -1,4 +1,4 @@
-# Jason M. Setiadi's Personal Website
+Projects I have done are listed below
 
 ## [1. Graph-Based Active Learning Research Project](https://jwcalder.github.io/GraphLearning/active_learning.html)
 In this project I researched many graph-based active learning techniques that works alongside graph-based semi-supervised learning frameworks. Semi-supervised learning is a method of using a small subset of labeled data to predict the remaining/future unlabeled data. The idea behind graph-based active learning is to choose the most optimal points to label given a graph structure that represents the dataset. That way we can have a labeling approach that is more methodological than simply randomly sample points to label. The hope of this approach is to minimize number of labeled data while still obtaining a sufficiently high accuracy or some other performance metric.
