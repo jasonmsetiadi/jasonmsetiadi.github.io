@@ -1,5 +1,5 @@
-<!-- # About Me
-I am a Data Science / Machine Learning enthusiast originated from Indonesia. I graduated from University of Minnesota with a Bachelor of Science in Statistical Science with minors in Computer Science and Mathematics. The skills I possess include coding in Python and R, usage of common data science libraries, collaborating on Github, writing in LateX, etc. -->
+# About Me
+I am a Data Science / Machine Learning enthusiast, originated from Indonesia. I graduated from University of Minnesota in 2022 with a Bachelor of Science in Statistical Science degree with minors in Computer Science and Mathematics. Currently I am working as a Product Management Intern at [Altair](https://www.altair.com/). Most of my experience come from doing research specifically in Active Learning, as well as through academic coursework. Some of the things I like to do are playing sports such as badminton, table tennis, or soccer, as well as cooking or trying out different cuisines. Feel free to connect with me on [Linkedin](https://www.linkedin.com/in/jasonmsetiadi/) or email me at setia025@umn.edu. 
 
 # Research Projects
 
