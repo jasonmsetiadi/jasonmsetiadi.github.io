@@ -3,17 +3,16 @@ I am a Data Science / Machine Learning enthusiast, originated from Indonesia. I 
 
 # Internship Project
 
-## Altair Product Management Intern Project: MLOps - Pre- and Post-processing Pipelines in Model Endpoints 
+## Altair Product Management Intern Project: MLOps - Pre-/Post-processing Pipelines in Model Endpoints 
 The objective of this internship project is to package upstream data processing code/pipeline into the model endpoint. Some of the key points/steps to achieve this objective are:
-* learn about data science processes & workflows, with specific focus in the area of MLOps (operationalizing machine learning models) such as different deployment types, inference/scoring in model endpoint, model evaluation, model registry, etc.
-* research/investigate different methods available to solve the problem, within Altair products, commercial & open source
+* Learn about data science processes and machine learning frameworks (e.g. TensorFlow, PyTorch, scikit-learn), with specific focus in the area of MLOps (operationalizing machine learning models).
+* Determine the scope and use cases relevant for the implementation of the pre- and post-processing pipelines in model endpoints as a new feature for the product.
+* Research and compare different open source tools/packages available to solve the problem.
+* Work on a coding solution as a proof of concept through deploying the model using MLFlow and Seldon Core, creating a docker image and run it inside a container on Docker Desktop, and getting predictions by sending an API request to the model endpoint using Postman.
+* Document the findings on tools/packages to solve the problem and the proof of concept of the feature using Confluence.
+* Present the internship project to technical and non-technical audiences within Altair.
 
-Research and compare different open source tools/packages available for integrating pre- and post-processing pipelines in model endpoints as a new feature for the product as well as document the use cases of its implementation in Confluence.
-
-This helps to eliminate the need for users to create an authoring batch pipeline and recode the data processing for model endpoint.
-
-
-document use cases relevant to implementation of the feature in SWA (which operations need to be taken up as is, versus produce a training and inference variety)
+Why this project is important? Because it helps to eliminate the need for users to create an authoring batch pipeline and recode the data processing for model endpoint.
 
 # Research Projects
 
