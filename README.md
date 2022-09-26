@@ -10,7 +10,7 @@ The objective of this internship project is to package upstream data processing 
 * Research and compare different open source tools/packages available to solve the problem.
 * Work on a coding solution as a proof of concept through performing these steps:
   * create a DockerFile that specifies package dependencies and deploy the model using Seldon Core
-  * register/log the model using MLFlow by providing the model file (.pkl (sklearn)/.pt (pytorch)/.pb (tensorflow)), script to load the model and perform prediction
+  * register/log the model using MLFlow by providing the model file (.pkl (sklearn)/.pt (pytorch)/.pb (tensorflow)) and a script to load the model and perform prediction
   * build a docker image and run it in a docker container using Docker Desktop
   * send api request to the model endpoint using Postman by providing the inference/scoring data to predict.
 * Document the findings on tools/packages to solve the problem and the proof of concept of the feature using Confluence.
