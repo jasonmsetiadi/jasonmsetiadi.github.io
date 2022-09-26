@@ -1,6 +1,20 @@
 # About Me
 I am a Data Science / Machine Learning enthusiast, originated from Indonesia. I graduated from University of Minnesota in 2022 with a Bachelor of Science in Statistical Science degree with minors in Computer Science and Mathematics. Currently I am working as a Product Management Intern at [Altair](https://www.altair.com/). Most of my experience come from doing research specifically in Active Learning, as well as through academic coursework. Some of the things I like to do are playing sports such as badminton, table tennis, or soccer, as well as cooking or trying out different cuisines. Feel free to connect with me on [Linkedin](https://www.linkedin.com/in/jasonmsetiadi/) or email me at setia025@umn.edu. 
 
+# Internship Project
+
+## Altair Product Management Intern Project: MLOps - Pre- and Post-processing Pipelines in Model Endpoints 
+The objective of this internship project is to package upstream data processing code/pipeline into the model endpoint. Some of the key points/steps to achieve this objective are:
+* learn about data science processes & workflows, with specific focus in the area of MLOps (operationalizing machine learning models) such as different deployment types, inference/scoring in model endpoint, model evaluation, model registry, etc.
+* research/investigate different methods available to solve the problem, within Altair products, commercial & open source
+
+Research and compare different open source tools/packages available for integrating pre- and post-processing pipelines in model endpoints as a new feature for the product as well as document the use cases of its implementation in Confluence.
+
+This helps to eliminate the need for users to create an authoring batch pipeline and recode the data processing for model endpoint.
+
+
+document use cases relevant to implementation of the feature in SWA (which operations need to be taken up as is, versus produce a training and inference variety)
+
 # Research Projects
 
 ## [1. Graph-Based Active Learning Research Project](https://jwcalder.github.io/GraphLearning/active_learning.html)
