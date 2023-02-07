@@ -1,9 +1,10 @@
 # About Me
-I am a Data Science / Machine Learning enthusiast, originated from Indonesia. I graduated from University of Minnesota in 2022 with a Bachelor of Science in Statistical Science degree with minors in Computer Science and Mathematics. Currently I am working as a Product Management Intern at [Altair](https://www.altair.com/). Most of my experience come from doing research specifically in Active Learning, as well as through academic coursework. Some of the things I like to do are playing sports such as badminton, table tennis, or soccer, as well as cooking or trying out different cuisines. Feel free to connect with me on [Linkedin](https://www.linkedin.com/in/jasonmsetiadi/) or email me at setia025@umn.edu. 
+I am a Data Science / Machine Learning enthusiast, originated from Indonesia. I graduated from University of Minnesota in 2022 with a Bachelor of Science in Statistical Science degree with minors in Computer Science and Mathematics. Most of my experience come from doing projects through internship, research, as well as academic coursework. Some of the things I like to do are playing sports such as badminton, table tennis, or soccer, as well as cooking or trying out different cuisines. Feel free to connect with me on [Linkedin](https://www.linkedin.com/in/jasonmsetiadi/) or email me at setia025@umn.edu. 
 
 # Internship Project
 
-## Altair Product Management Intern Project: MLOps - Pre-/Post-processing Pipelines in Model Endpoints 
+## [Altair](https://www.altair.com/) Product Management Intern Project: MLOps - Pre-/Post-processing Pipelines in Model Endpoints 
+About 
 The objective of this internship project is to package upstream data processing code/pipeline into the model endpoint. Some of the key points/steps to achieve this objective are:
 * Learn about data science processes and machine learning frameworks (e.g. TensorFlow, PyTorch, scikit-learn), with specific focus in the area of MLOps (operationalizing machine learning models).
 * Determine the scope and use cases relevant for the implementation of the pre- and post-processing pipelines in model endpoints as a new feature for the product.
