@@ -1,7 +1,10 @@
 # About Me
 I am a Data Science / Machine Learning enthusiast, originated from Indonesia. I graduated from University of Minnesota in 2022 with a Bachelor of Science in Statistical Science degree with minors in Computer Science and Mathematics. Most of my experience come from doing projects through internship, research, as well as academic coursework. Some of the things I like to do are playing sports such as badminton, table tennis, or soccer, as well as cooking or trying out different cuisines. Feel free to connect with me on [Linkedin](https://www.linkedin.com/in/jasonmsetiadi/) or email me at setia025@umn.edu. 
 
-# Internship Project
+# Industry Projects
+
+## [DataOn](https://www.humanica.com/en/dataon/) ML System Design for Employee Attrition Risk Prediction
+### [Design](design.pdf)
 
 ## [Altair](https://www.altair.com/) Product Management Intern Project: MLOps - Pre-/Post-processing Pipelines in Model Endpoints 
 About 
