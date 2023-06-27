@@ -3,10 +3,10 @@ I am a Data Science / Machine Learning enthusiast, originated from Indonesia. I 
 
 # Industry Projects
 
-## [DataOn](https://www.humanica.com/en/dataon/): ML System Design for Employee Attrition Risk Prediction
+## ([DataOn](https://www.humanica.com/en/dataon/)) ML System Design for Employee Attrition Risk Prediction
 ### [Design](design.pdf)
 
-## [Altair](https://www.altair.com/): MLOps - Pre-/Post-processing Pipelines in Model Endpoints 
+## ([Altair](https://www.altair.com/)) MLOps - Pre-/Post-processing Pipelines in Model Endpoints 
 About 
 The objective of this internship project is to package upstream data processing code/pipeline into the model endpoint. Some of the key points/steps to achieve this objective are:
 * Learn about data science processes and machine learning frameworks (e.g. TensorFlow, PyTorch, scikit-learn), with specific focus in the area of MLOps (operationalizing machine learning models).
