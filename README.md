@@ -4,7 +4,25 @@ I am a Data Scientist/Machine learning Enginner at DataOn Corp Indonesia. I am c
 # Industry Projects
 
 ## 1. ([DataOn](https://www.humanica.com/en/dataon/)) ML System Design for Employee Attrition Risk Prediction
-### [Design](design.pdf)
+[System Design](design.pdf)
+
+Problem Statement:
+* Cost of hiring and training new employees is huge, so it is important to retain employees for a long term
+
+Challenges:
+* Framing the problem (data labeling, classification (binary/multi-class) or regression)
+* Inaccessible features (reasons for resignation can be unrelated to job performance or satisfaction, such as personal or family issues)
+
+Model requirements:
+* Compatible with SHAP TreeExplainer or LinearExplainer for model interpretation
+* Low dimensionality for fast fitting time, shap values computation time, and smaller memory size
+  
+System Evaluation:
+* Precision (# of actual resignations out of those predicted to resign)
+* Recall (# of correct predictions out of those that actually resign)
+
+Impact:
+* Help companies reduce attrition rate through applying targeted retention strategies on employees with high attrition risk based on feature impact
 
 ## 2. ([Altair](https://www.altair.com/)) MLOps - Pre-/Post-processing Pipelines in Model Endpoints  
 The objective of this internship project is to package upstream data processing code/pipeline into the model endpoint. Some of the key points/steps to achieve this objective are:
