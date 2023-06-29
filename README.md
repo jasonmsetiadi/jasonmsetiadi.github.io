@@ -10,16 +10,15 @@ Problem Statement:
 * Cost of hiring and training new employees is huge, so it is important to retain employees for a long term
 
 Challenges:
-* Framing the problem (data labeling, classification (binary/multi-class) or regression)
-* Inaccessible features (reasons for resignation can be unrelated to job performance or satisfaction, such as personal or family issues)
+* Framing the problem (data labeling, classification or regression, ensemble models trained on different datasets)
+* Collecting informative/relevant features
 
 Model requirements:
 * Compatible with SHAP TreeExplainer or LinearExplainer for model interpretation
 * Low dimensionality for fast fitting time, shap values computation time, and smaller memory size
   
 System Evaluation:
-* Precision (# of actual resignations out of those predicted to resign)
-* Recall (# of correct predictions out of those that actually resign)
+* Precision (% of actual resignations out of those predicted to resign)
 
 Impact:
 * Help companies reduce attrition rate through applying targeted retention strategies on employees with high attrition risk based on feature impact
