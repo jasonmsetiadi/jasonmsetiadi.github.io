@@ -13,6 +13,7 @@ baseurl: ""
 url: "http://jasonmsetiadi.github.io"
 # twitter_username: jasonmsetiadi
 github_username:  jasonmsetiadi
+linkedin_username:  jasonmsetiadi
 
 # Build settings
 markdown: kramdown
