@@ -1,0 +1,43 @@
+---
+layout: post
+comments: true
+title: "Lessons in Real-World Machine Learning from My First Job out of College"
+excerpt: "Things I learned about solving real-world problems using machine learning at my first job out of college."
+date:   2023-08-30 07:00:00
+mathjax: false
+---
+
+<style>
+.post-header h1 {
+    font-size: 35px;
+}
+.post pre,
+.post code {
+    background-color: #fcfcfc;
+    font-size: 13px; /* make code smaller for this post... */
+}
+</style>
+
+### Start Simple, Complexify Later
+One of the first mistakes I made was spending too much time training/tuning different types of models and developing new features, while the system infrastructure have not been established yet. With that said, at the beginning of every project, try to focus most of your attention on getting the end-to-end pipeline working before focusing on gathering features or training/tuning models. Starting simple helps to obtain baselines that you can use for comparisons as your system gets more complex. It is okay to start with just a few simple features and a simple linear model to begin with.
+
+> Note: you may even be able to start without machine learning (using simple heuristics) to obtain baselines, before moving to machine learning.
+
+<!-- ### Improving Data vs Model
+Most of the time, it is always best to spend your time improving the data quality to increase model performance. No matter how advanced the model architecture you use, if the data is trash, the result will be trash. On the other hand, having high quality data and features will produce great results even with simple models. 
+
+I learn that getting high-quality data requires significant amount of time. Real-world data is often messy and complicated. We need to first give a thorough inspection of our data and understand how it is stored in order to extract useful features. I made a mistake at first to not pay attention to the data I use for training and prediction. I realize further that the data I use for training is different from prediction. So, I learn to make sure that the data used for training is what is expected during prediction. This also touches the concept of data drift, where over time, the prediction data will change, which means model retraining is needed to keep the system up to date.
+
+We also have to pay attention to data accuracy, completeness, consistency, and timeliness. Be patient, start simple, then iteratively complexify and improve your data quality. 
+
+### Reframing Tasks
+I realize that there can be many ways to frame a problem we would like to solve. It is an important skill to have as we may achieve different model performances just because of reframing. 
+
+The first task I was assigned was to predict employee attrition risk. The first thought that came to mind was to frame it as a binary classification problem (resign vs active) and obtain resign probability outputs. However, as I acknowledge that this task depends on one additional parameter (the duration to classify as resign), I discovered a different way to frame the problem, which is regression. We can train models to predict the duration an employee will resign and turn those into probabilities (low duration gets high probabilities and vice versa).
+
+### Model Requirements
+When we talk about metrics, people tend to focus on the model performance (accuracy, precision, recall). However in real world applications, we have to account not just model performance as a metric, but also other metrics such as interpretability, computation time, inference latency, etc. we usually prefer fast inference time than fast training time. hence choosing a smaller model and training it longer is prefered than a large model. A model that achieves high performance is one thing, but a model that is able to explain its predictions is another thing. I realize how important it is for business people and general users to get an understanding of why a model makes certain prediction. -->
+
+### References
+- [Rules of ML](https://developers.google.com/machine-learning/guides/rules-of-ml)
+- [Recipe for Training NN](http://karpathy.github.io/2019/04/25/recipe/)
