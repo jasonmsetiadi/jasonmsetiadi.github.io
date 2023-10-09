@@ -10,25 +10,38 @@ mathjax: false
 As I graduated from college, I wanted to experience how ML is applied in the real world. I landed my first job at a start up as the only data scientist/ ml engineer, so I am expected to build things from scratch and learn things on my own. I wanted to share some of the things I learned and the mistakes I made throughout my experience so far. Hopefully people can relate and benefit from this.
 
 ### 1) Start Simple, Complexify Later
-
 One of the first mistakes I made was spending too much time training/tuning different types of models and developing new features, while the system infrastructure have not been established yet. With that said, at the beginning of every project, try to focus most of your attention on getting the end-to-end pipeline working before focusing on gathering features or training/tuning models. Starting simple helps to obtain baselines that you can use for comparisons as your system gets more complex. It is okay to start with just a few simple features and a simple linear model to begin with.
 
 > Note: you may even be able to start without machine learning (using simple heuristics) to obtain baselines, before moving to machine learning.
 
-<!-- ### 2) Improving Data vs Model
-Most of the time, it is always best to spend your time improving the data quality to increase model performance. No matter how advanced the model architecture you use, if the data is trash, the result will be trash. On the other hand, having high quality data and features will produce great results even with simple models. 
+### 2) Inspect Prediction Data Before Collecting Training Data
+A model will be most effective when the data it predicts closely mimics the data it is trained on. It is crucial to understand the data our model will encounter during prediction before collecting data for model training.
 
-I learn that getting high-quality data requires significant amount of time. Real-world data is often messy and complicated. We need to first give a thorough inspection of our data and understand how it is stored in order to extract useful features. I made a mistake at first to not pay attention to the data I use for training and prediction. I realize further that the data I use for training is different from prediction. So, I learn to make sure that the data used for training is what is expected during prediction. This also touches the concept of data drift, where over time, the prediction data will change, which means model retraining is needed to keep the system up to date.
-
-We also have to pay attention to data accuracy, completeness, consistency, and timeliness. Be patient, start simple, then iteratively complexify and improve your data quality. 
+I initially overlooked the importance of maintaining consistency between training and prediction data. I started out collecting the training data and trained the model, without considering/thinking about prediction data. Soon I realize that the predicted data differed significantly from the training data. I learned to make sure that the data utilized for training aligns with what is expected during the prediction phase. This also leads to the concept of data drift--where, over time, the prediction data may change/evolve, requiring model retraining to keep the system up to date.
 
 ### 3) Reframing Tasks
-I realize that there can be many ways to frame a problem we would like to solve. It is an important skill to have as we may achieve different model performances just because of reframing. 
+I learned that there can be many ways to frame/approach a single problem. It is an important skill to have as we may achieve different model performances through reframing tasks. 
 
-The first task I was assigned was to predict employee attrition risk. The first thought that came to mind was to frame it as a binary classification problem (resign vs active) and obtain resign probability outputs. However, as I acknowledge that this task depends on one additional parameter (the duration to classify as resign), I discovered a different way to frame the problem, which is regression. We can train models to predict the duration an employee will resign and turn those into probabilities (low duration gets high probabilities and vice versa).
+The first task I was assigned was to predict employee attrition risk. The first thought that came to mind was to frame it as a binary classification problem (resign vs active) and obtain resign probability outputs. However, I soon realize that this task depends on one additional parameter, the duration to classify as resign (resign in how many months). I discovered that if I frame the problem as regression, I don't need to depend on this additional parameter. We can train models to predict the duration (in how many months) an employee will resign, and turn those into probabilities (low duration gets high probabilities and vice versa).
+
+This is one simple example of how a problem can be framed in multiple ways, and give significant impact in how the system works. In more complex scenarios, we may even be able to frame a single problem into multiple problems (classification + regression). Therefore, it is something to keep in mind and explore your options when tackling your given problem.
 
 ### 4) Model Requirements
-When we talk about metrics, people tend to focus on the model performance (accuracy, precision, recall). However in real world applications, we have to account not just model performance as a metric, but also other metrics such as interpretability, computation time, inference latency, etc. we usually prefer fast inference time than fast training time. hence choosing a smaller model and training it longer is prefered than a large model. A model that achieves high performance is one thing, but a model that is able to explain its predictions is another thing. I realize how important it is for business people and general users to get an understanding of why a model makes certain prediction. -->
+When we talk about metrics, we tend to focus on the model performance (accuracy, precision, recall, etc). However, in real world applications, we have to account not just model performance as a metric, but also other metrics such as interpretability, computation time, inference latency, etc. 
+
+A model that achieves high performance is one thing, but a model that is able to explain its predictions is another. I recognize the significance of providing business people and general users with an understanding of why a model makes certain predictions. This transparency not only enhances trust in the predictions but also fosters confidence in the model's decision-making process.
+
+Moreover, the speed at which a model can generate predictions—referred to as inference latency—is crucial in meeting user expectations. In practice (especially real-time applications), a simpler model with low inference latency is often preferred over a more complex one with higher latency. Beyond latency, computation time also need to be considered as tailoring the model to the computational resources available is essential for efficient training.
+
+To conclude, the process of determining metrics should involve perspectives from both technical and non-technical stakeholders. The collaborative input ensures that the chosen metrics align not only with technical goals but also with the broader objectives of the business and end-users.
+
+<!-- ### 3) Improving Data vs Model
+Most of the time, it is always best to spend your time improving the data quality to increase model performance. No matter how advanced the model architecture you use, if the data is trash, the result will be trash. On the other hand, having high quality data and features will produce great results even with simple models. 
+
+I learn that getting high-quality data requires significant amount of time. Real-world data is often messy and complicated. We need to first give a thorough inspection of our data and understand how it is stored in order to extract useful features.  -->
+
+<!-- Sometimes even though we have the right features, we also have to pay attention to data accuracy, completeness, consistency, and timeliness. Sometimes there are mis entries that cause our features not to be as useful as expected. -->
+<!-- Be patient, start simple, then iteratively complexify and improve your data quality.  -->
 
 ### References
 - [Rules of ML](https://developers.google.com/machine-learning/guides/rules-of-ml)
