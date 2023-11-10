@@ -26,9 +26,17 @@ While prompt engineering can steer model’s output / behavior, it is still limi
 
 Ideally, we should only utilize the most relevant knowledge / context for the given user prompt. One reason is because LLMs have context length limitations. Besides, it wouldn't be so efficient to provide too much knowledge that may be irrelevant to the prompt, and it would also cost a lot more. So, RAG only takes text chunks from a collection of documents that are most relevant to a user prompt through the use of embedding models! 
 
-Typically, documents will be split into smaller text chunks. Then, we use embedding models on each text chunk to obtain its embeddings (a numerical representation of the text chunk, used to calculate relevancy against a given prompt) [(example here)](https://cookbook.openai.com/examples/embedding_wikipedia_articles_for_search). These text chunk - embedding pairs can be stored in a vector store. Finally, given a user prompt, we can compute its embedding and search over the vector store to obtain only the most relevant (highest cosine similarity) text chunks, and pass it as input to the LLM [(example here)](https://cookbook.openai.com/examples/question_answering_using_embeddings).
+Typically, documents will be split into smaller text chunks. Then, we use embedding models on each text chunk to obtain its embeddings (a numerical representation of the text chunk, used to calculate relevancy against a given prompt). These text chunk - embedding pairs can be stored in a vector store. Finally, given a user prompt, we can compute its embedding and search over the vector store to obtain only the most relevant (highest cosine similarity) text chunks (aka Retrieval), and pass it as input to the LLM (aka Augmented Generation).
+
+> **Note:**
+The retrieval step (only using embedding models) can be used for other use cases such as [semantic search](https://cookbook.openai.com/examples/semantic_text_search_using_embeddings) or [recommendations](https://cookbook.openai.com/examples/recommendation_using_embeddings), without the need for augmented generation (without using LLMs).
+
+Some helpful examples:
+- [Preparing Dataset for Retrieval](https://cookbook.openai.com/examples/embedding_wikipedia_articles_for_search)
+- [RAG](https://cookbook.openai.com/examples/question_answering_using_embeddings)
 
 <!-- ## Tools
+What if we want to apply the same solution that RAG offers but for data types other than unstructured (structured, code). Tools can help by offering a flexible way to obtain such relevant data.
 Build agents. 
 QA over structured data = prompts -> queries -> structured data + prompt -> output
 QA over code (code interpreter) = prompts -> code -> code result + prompt -> output
@@ -43,6 +51,7 @@ Try to maximize your efforts using prompt engineering (few shot examples), promp
 
 ## References
 - [OpenAI Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering)
+- [OpenAI Fine-Tuning Guide](https://platform.openai.com/docs/guides/fine-tuning)
 - [OpenAI Cookbook](https://cookbook.openai.com/)
 - [Lilian Weng Prompt Engineering](https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/)
 <!-- (https://help.openai.com/en/collections/3675942-prompt-engineering)
