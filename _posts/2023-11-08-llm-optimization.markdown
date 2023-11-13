@@ -46,8 +46,14 @@ QA over code (code interpreter) = prompts -> code -> code result + prompt -> out
 
 Given the randomness of LLMs, prompt engineering may not be the solution if you need reliable outputs. Fine-tuning allows LLMs to get better at specific tasks and produce **more reliable outputs**. Furthermore, fine-tuning can achieve this with **less token usage** compared to prompt engineering. This involves providing example inputs and outputs of your specific task, so that LLMs can learn and perform according to your examples. One example of this is if you wanted to build a classifier for sentiment analysis. Your inputs would be some text and your outputs would be specific classes (e.g. “positive” or “negative”). In general, some common use cases for fine-tuning include respond in a specific style or a specific output, follow complex prompts, perform a new task, or handle edge cases.
 
+We can think of fine-tuning as the typical ML model training process. We can first create a training dataset that has examples of how to perform our desired task. We may optionally create a validation dataset for evaluation to avoid overfitting. If using a fine-tuning API, we may need to validate our datasets so that they adhere to the expected format. Once the datasets are ready, we can start the fine-tuning process to train the pre-trained LLM with the training examples we have formed. Finally, we can save this fine-tuned LLM for inference.
+
 > **Note:**
 Try to maximize your efforts using prompt engineering (few shot examples), prompt chaining, or function calling, before moving towards fine-tuning.
+
+Some helpful examples:
+- [Preparing Dataset for Fine-tuning](https://cookbook.openai.com/examples/chat_finetuning_data_prep)
+- [Fine-tuning](https://cookbook.openai.com/examples/how_to_finetune_chat_models)
 
 ## References
 - [OpenAI Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering)
