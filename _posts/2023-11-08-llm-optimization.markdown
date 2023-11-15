@@ -1,13 +1,13 @@
 ---
 layout: post
 comments: true
-title: "LLM Optimization Patterns"
-excerpt: "3 common patterns/ways to improve performance of LLM systems."
+title: "LLM Optimization Techniques"
+excerpt: "3 common patterns/techniques to optimize performance of LLM systems."
 date:   2023-11-08 07:00:00
 mathjax: false
 ---
 
-Here we will discuss 3 existing patterns that are commonly used to optimize LLM systems performance.
+Here we will discuss 3 existing techniques that are commonly used to optimize LLM systems performance.
 
 ## Prompt Engineering
 
@@ -18,7 +18,10 @@ People often have the misconception that prompt engineering is just trying out r
 
 <!-- One of the most common prompt engineering techniques is called few-shot prompting. In simple terms, we can provide examples of our desired output to help the LLM follow the examples. For example, you may need an LLM to classify customer reviews as "positive" or "negative". Without few-shot, LLM can answer in a variety of ways. However, few-shot can guide the LLM to only respond with "positive" or "negative".
 
-Another example is preventing LLMs from answering out of scope questions. We can provide detailed instructions by telling the scope of task, how to respond when given out of scope questions, even calling out edge cases. -->
+<!-- For example, you may need an LLM to classify customer reviews as "positive" or "negative". Without few-shot, LLM can answer in a variety of ways. However, few-shot can guide the LLM to only respond with "positive" or "negative". 
+Write clear instructions (provide steps to reach the solution), split complex task into simpler subtasks, give GPTs time to think (step by step), show output structure (JSON)
+limited context window, hallucinations, constrained knowledge, not so reliable (random), expensive
+-->
 
 ## RAG
 
@@ -30,32 +33,49 @@ Typically, documents will be split into smaller text chunks. Then, we use embedd
 
 > **Note:**
 The retrieval step (only using embedding models) can be used for other use cases such as [semantic search](https://cookbook.openai.com/examples/semantic_text_search_using_embeddings) or [recommendations](https://cookbook.openai.com/examples/recommendation_using_embeddings), without the need for augmented generation (without using LLMs).
+<!-- > - RAG can also be a [tool of an agent](https://cookbook.openai.com/examples/how_to_call_functions_for_knowledge_retrieval) when the documents you want to retrieve depends on the user query. -->
 
 Some helpful examples:
 - [Preparing Dataset for Retrieval](https://cookbook.openai.com/examples/embedding_wikipedia_articles_for_search)
 - [RAG](https://cookbook.openai.com/examples/question_answering_using_embeddings)
 
 <!-- ## Tools
-What if we want to apply the same solution that RAG offers but for data types other than unstructured (structured, code). Tools can help by offering a flexible way to obtain such relevant data.
+The purpose of tools is similar to RAG, it serves as context enrichment tool for LLM.
+What if we want to apply the same solution that RAG offers but for data types other than unstructured (structured, code).
+One main difference between Tools and RAG is that RAG uses embedding models while Tools use functions to obtain relevant context.
+Functions are used only when it depends on the user query.
+one example tool is google search api
+Tools can help by offering a flexible way to obtain such relevant data.
 Build agents. 
 QA over structured data = prompts -> queries -> structured data + prompt -> output
 QA over code (code interpreter) = prompts -> code -> code result + prompt -> output
+
+- [Function Calling](https://cookbook.openai.com/examples/how_to_call_functions_with_chat_models)
+- [Retrieval as Search Tool](https://cookbook.openai.com/examples/how_to_call_functions_for_knowledge_retrieval)
 -->
 
 ## Fine-Tuning
 
-Given the randomness of LLMs, prompt engineering may not be the solution if you need reliable outputs. Fine-tuning allows LLMs to get better at specific tasks and produce **more reliable outputs**. Furthermore, fine-tuning can achieve this with **less token usage** compared to prompt engineering. This involves providing example inputs and outputs of your specific task, so that LLMs can learn and perform according to your examples. One example of this is if you wanted to build a classifier for sentiment analysis. Your inputs would be some text and your outputs would be specific classes (e.g. “positive” or “negative”). In general, some common use cases for fine-tuning include respond in a specific style or a specific output, follow complex prompts, perform a new task, or handle edge cases.
+<!-- 
+not so reliable (random) -> we have seen that we can use few-shot learning to make LLMs somewhat reliable. 
+expensive -> with prompt engineering, you may need to provide examples in every single API call. this can lead to inflated costs. fine tuning can mitigate this so the LLM learns those examples while keeping your input tokens low.
+(consistent instruction following)
+One example of this is if you wanted to build a classifier for sentiment analysis. Your inputs would be some text and your outputs would be specific classes (e.g. “positive” or “negative”).
+-->
+Given the randomness of LLMs, prompt engineering may not be the only solution if you need reliable outputs. Fine-tuning allows LLMs to get better at specific tasks and produce **more reliable outputs**. This involves providing example inputs and outputs of your specific task, so that LLMs can learn and perform according to your examples. Unlike few-shot learning where the number of examples is limited by the LLM context window, fine-tuning enables us to provide **unlimited number of examples** to the LLM. In addition, it offers **reduced cost and latency** through less token usage and a smaller model. Some common use cases for fine-tuning include respond in a specific style or structure, follow complex instructions, perform a specific task (e.g. code interpreter), or handle edge cases. 
 
-We can think of fine-tuning as the typical ML model training process. We can first create a training dataset that has examples of how to perform our desired task. We may optionally create a validation dataset for evaluation to avoid overfitting. If using a fine-tuning API, we may need to validate our datasets so that they adhere to the expected format. Once the datasets are ready, we can start the fine-tuning process to train the pre-trained LLM with the training examples we have formed. Finally, we can save this fine-tuned LLM for inference.
+We can think of fine-tuning as continuing the model training process on our dataset. We can first create a training dataset that has examples of how to perform our desired task. We may optionally create a validation dataset for evaluation to avoid overfitting. If using a fine-tuning API, we may need to validate our datasets so that they adhere to the expected format. Once the datasets are ready, we can start the fine-tuning process to train the pre-trained LLM with the training examples we have formed. We can experiment with different hyperparameters (batch size, learning rate, number of epochs) when fine-tuning. Finally, we can use this fine-tuned LLM for inference. Note that it is best practice to first evaluate the fine-tuned model before serving it for inference.
 
 > **Note:**
-Try to maximize your efforts using prompt engineering (few shot examples), prompt chaining, or function calling, before moving towards fine-tuning.
+> - Try to maximize your efforts using prompt engineering (few shot learning), prompt chaining, or function calling, before moving towards fine-tuning.
+> - Start small and focus on quality when preparing your training datasets for fine-tuning.
 
 Some helpful examples:
 - [Preparing Dataset for Fine-tuning](https://cookbook.openai.com/examples/chat_finetuning_data_prep)
 - [Fine-tuning](https://cookbook.openai.com/examples/how_to_finetune_chat_models)
 
 ## References
+- [OpenAI DevDay Session](https://youtu.be/ahnGLM-RC1Y?si=A4dLdsSo2twnWH6X)
 - [OpenAI Prompt Engineering Guide](https://platform.openai.com/docs/guides/prompt-engineering)
 - [OpenAI Fine-Tuning Guide](https://platform.openai.com/docs/guides/fine-tuning)
 - [OpenAI Cookbook](https://cookbook.openai.com/)
