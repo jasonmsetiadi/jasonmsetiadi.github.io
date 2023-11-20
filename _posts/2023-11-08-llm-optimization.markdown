@@ -7,16 +7,19 @@ date:   2023-11-08 07:00:00
 mathjax: false
 ---
 
-Here we will discuss 3 existing techniques that are commonly used to optimize LLM systems performance.
+There are two types of challenges that can hinder the performance of LLMs. One challenge is knowledge/context limitation, as pre-trained LLMs are limited to the knowledge they were pre-trained on. Another challenge relates to reliability, where pre-trained LLMs may exhibit variability in their outputs due to their inherently random nature. Here, we will discuss 3 common techniques to mitigate these challenges and improve LLM performance.
 
 ## Prompt Engineering
 
-People often have the misconception that prompt engineering is just trying out random prompts and eye ball results for a one time job/task. Real prompt engineering involves creating prompts that is going to be used repeatedly in high frequencies/volumes as part of an LLM system, with an engineered approaches, e.g., define problem/spec, build, version, **testing prompts and outputs** (speed, accuracy, toxicity, etc), finding edge cases, runtime monitoring, and iterative improvements. Moreover, it can serve as your **baseline performance for system evaluations** before adding the following complex patterns. 
+People often have the misconception that prompt engineering is just trying out random prompts and eye ball results for a one time job/task. Real prompt engineering involves creating prompts that is going to be used repeatedly in high frequencies/volumes as part of an LLM system, with an engineered approaches, e.g., define problem/spec, build, version, **testing prompts and outputs** (speed, accuracy, toxicity, etc), finding edge cases, runtime monitoring, and iterative improvements. Moreover, it can serve as your **baseline performance** for system evaluations before adding the following complex patterns. 
 
 > Prompt engineering is the process of searching through program space to find the program that empirically seems to perform best on your target task. 
 -**François Chollet**
 
-<!-- One of the most common prompt engineering techniques is called few-shot prompting. In simple terms, we can provide examples of our desired output to help the LLM follow the examples. For example, you may need an LLM to classify customer reviews as "positive" or "negative". Without few-shot, LLM can answer in a variety of ways. However, few-shot can guide the LLM to only respond with "positive" or "negative".
+Prompt engineering is a good start when building LLM systems. We can augment knowledge beyond the pre-training data (current data, confidential/internal data, domain-specific data, etc) to solve context challenges. However, this becomes a problem when we have a large knowledge base we want to augment as LLMs have limited context window. Furthermore, it can still hallucinate if we retrieve context that is unrelated to the user prompt. We can also use few-shot learning to make LLMs more reliable, but this can become problematic as we increase the number of examples. Each call will be more expensive and the number of examples is limited to the LLM context window. The following techniques present solutions to these problems, namely RAG for context limitation and Fine-tuning for reliability concerns.
+
+
+<!-- limited context window, hallucinations, constrained knowledge, not so reliable (random), expensive.  -->
 
 <!-- For example, you may need an LLM to classify customer reviews as "positive" or "negative". Without few-shot, LLM can answer in a variety of ways. However, few-shot can guide the LLM to only respond with "positive" or "negative". 
 Write clear instructions (provide steps to reach the solution), split complex task into simpler subtasks, give GPTs time to think (step by step), show output structure (JSON)
