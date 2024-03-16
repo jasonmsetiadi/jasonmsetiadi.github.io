@@ -1,0 +1,54 @@
+---
+layout: post
+comments: true
+title: "Tech Career Advice"
+excerpt: "Advice I wish I had known when starting my learning journey in tech."
+date:   2023-11-30 07:00:00
+mathjax: false
+---
+
+I am a strong believer that the best way to learn is through learning from others more senior than you and working on projects. A project should be complex enough that requires deep thought on how to work on it. This post is intended for those who are just starting out in their learning journey with a goal of landing a job in tech.
+
+## Learn to code
+Learning to code is the foundation for a career in tech. One should start as soon as possible before learning other applications of code. No matter if you don't have a goal of becoming a software engineer, learning to code is a rewarding skill to have. It helps you to be more impactful than others without technical knowledge.
+
+## Getting involved in projects
+
+Here are some ways to get involved in projects, learn, and gain experience. They are listed in the order of easier to attain to hardest.
+
+#### 1. Personal projects
+<!-- work on your own -->
+
+#### 2. Hackathons / Coding Competitions
+<!-- collaborate with peers of similar skills -->
+
+#### 3. Open Source Projects
+<!-- collaborate with wide range of devs (junior-senior) -->
+
+#### 4. Research Opportunities
+<!-- focused mentorship (academia) -->
+
+#### 5. Internships
+<!-- focused mentorship (industry)  -->
+
+#### 6. Job
+<!-- - [Startups or Big Companies](https://huyenchip.com/ml-interviews-book/contents/1.2.3-startups-or-big-companies.html) -->
+
+## Showcase your projects
+
+Your projects won't give maximum benefits if you don't showcase them to others. People need a way to determine your technical level and bullet points on your resume has to be backed up by a concrete example. This way you can standout more from the crowd of thousands of applicants.
+
+- **Blogging**:
+Convey your understanding of topics through writing. These can be more appropriate for closed source projects such as projects in industry.
+
+- **Github Repos**:
+If your project is open sourced, then you should provide the github repo.
+
+- **Google Scholar**:
+These are more relevant for academic publications such as research proojects.
+
+- **Rankings/Awards**:
+These can be appropriate if you did hackathon / coding competitions, stack overflow contributions, kaggle competitions, leetcode, etc.
+
+## Conclusion
+Starting your career in tech may be a dawnting process. You may feel there is too heavy competition, or you are just not smart enough to learn all these concepts. Everyone has their own pace of learning. Maybe one understands a particular concept in couple of months, maybe others take much longer. Try to compare with your own self when evaluating your learning progress. Try to be patient and not rush your learning, because learning is a never ending process throughout your career. People who stops learning will not be able to adapt to changes in tech.
