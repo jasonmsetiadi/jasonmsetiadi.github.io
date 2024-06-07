@@ -1,0 +1,37 @@
+---
+layout: post
+comments: true
+title: "Fine Tuning Open Source LLMs"
+excerpt: "Guide on fine tuning open source LLMs using axolotl framework."
+date:   2024-05-25 07:00:00
+mathjax: false
+---
+
+Data privacy can be extremely important in most industry use cases of AI applications. Hence it is important to not rely mostly on proprietary models (e.g. OpenAI, Anthropic), and start to build our own models. This guide will introduce how to fine tune an open source model for our own use case using a framework called [axolotl](https://openaccess-ai-collective.github.io/axolotl/) [[Github]](https://github.com/OpenAccess-AI-Collective/axolotl/). That way we know that our data is secured within our own model.
+
+Some other reasons, fine tuning open source models can be more performant and cheaper for specific AI use cases compared to using proprietary models.
+
+This guide is collected based on my learnings from the LLM Fine Tuning Course by Hamel and Dan.
+
+## Compute
+In order to run and fine-tune open source models, we need substantial GPU compute power. For most people, having this setup locally can be very expensive. Hence the recommended approach would be to utilize cloud GPUs. There are many available platforms that provide it, but in the course we focused on using [Jarvis Labs](https://jarvislabs.ai/) and [Modal Labs](https://modal.com/).
+
+## Data Preparation
+Before fine tuning, we need to prepare the dataset to fine tune the model on. One example dataset for fine tuning instruction models is [mhenrichsen/alpaca_2k_test](https://huggingface.co/datasets/mhenrichsen/alpaca_2k_test), available on Hugging Face. However for sepcific use cases, we will need to create our own fine tuning dataset based on our private data.
+
+## Fine Tuning
+<!-- there are many types of fine tuning. 3 most common ones are full fine tuning, lora, and qlora -->
+
+Once we have setup our compute resource as well as our fine tuning dataset, we can start our fine tuning process. First we need to create an axolotl config file (there are many [examples](https://github.com/OpenAccess-AI-Collective/axolotl/tree/main/examples) to follow in the axolotl repo), where we can specify the data, model, and other fine tuning parameters to use. We can choose an open source base model to fine tune on from many available models on Hugging Face (e.g. Llama, Mistral).
+
+To run the fine tuning process using axolotl, we can run `accelerate launch -m axolotl.cli.train {CONFIG_PATH}` where `CONFIG_PATH` is the path of the config file. If using modal, one can run `modal run --detach src.train --config={CONFIG_PATH} --data={DATA_PATH}` instead, where `data` is an optional argument in case you want to overwrite the dataset specified in the config.
+
+After the fine tuning process is completed, the model files will be stored in a directory path specified by `output_dir` in the config file. In case one wants to save the merged LORA to base model, one can run `python3 -m axolotl.cli.merge_lora {CONFIG_PATH} --lora_model_dir="./completed-model"`, where `lora_model_dir` is an optional argument for specifying the path to save the model.
+
+## Inference
+To perform inference, we can run `accelerate launch -m axolotl.cli.inference {CONFIG_PATH} --lora_model_dir="./lora-out" --gradio` where gradio is an optional parameter to run using a gradio UI. In modal, we can simply run `modal run -q src.inference` or `modal deploy src.inference`.
+
+## Examples
+- [Axolotl Quickstart Example](https://github.com/OpenAccess-AI-Collective/axolotl?tab=readme-ov-file#quickstart-)
+- [Axolotl on Modal Quickstart Example](https://github.com/modal-labs/llm-finetuning?tab=readme-ov-file#quickstart)
+- [Hamel's Honeycomb Example](https://github.com/parlance-labs/ftcourse)
