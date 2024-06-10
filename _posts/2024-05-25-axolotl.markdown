@@ -47,10 +47,10 @@ Once we have setup our compute resource as well as our fine tuning dataset, we c
 
 <!-- If using modal, one can run `modal run --detach src.train --config={CONFIG_PATH} --data={DATA_PATH}` instead, where data is also an optional argument. -->
 
-To run the fine tuning process using axolotl, we can run `accelerate launch -m axolotl.cli.train {CONFIG_PATH}`. After the fine tuning process is completed, the model files will be stored in a directory path specified by `output_dir` in the config file. In case one wants to save the merged LORA to base model, one can run `python3 -m axolotl.cli.merge_lora {CONFIG_PATH} --lora_model_dir="./completed-model"`, where `lora_model_dir` is an optional argument for specifying the path where the LORA adapter was saved.
+To run the fine tuning process using axolotl, we can run `accelerate launch -m axolotl.cli.train {CONFIG_PATH}`. After the fine tuning process is completed, the LORA adapter will be stored in a directory path specified by `output_dir` in the config file. In case one wants to save the full weights fine-tuned model, we can merge the LORA adapter that has been saved with the base model by running `python3 -m axolotl.cli.merge_lora {CONFIG_PATH} --lora_model_dir={MODEL_PATH}`, where `lora_model_dir` is an optional argument for specifying the path where the LORA adapter was saved.
 
 ## Inference
-To perform inference, we can run `accelerate launch -m axolotl.cli.inference {CONFIG_PATH} --lora_model_dir={MODEL_PATH} --gradio` where gradio is an optional parameter to run using a gradio UI. 
+To experiment with your trained model, you can perform inference by running `accelerate launch -m axolotl.cli.inference {CONFIG_PATH} --lora_model_dir={MODEL_PATH}` if you stored a pretrained LORA model. If you stored a full weights fine-tuned model, you run `accelerate launch -m axolotl.cli.inference {CONFIG_PATH} --base_model={MODEL_PATH}` instead. You can add `--gradio` at the end if you want to run inference in a gradio UI.
 <!-- In modal, we can simply run `modal run -q src.inference`. -->
 
 ## Examples
