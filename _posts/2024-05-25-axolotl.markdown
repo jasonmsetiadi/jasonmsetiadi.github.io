@@ -19,7 +19,9 @@ In order to run and fine-tune open source models, we need substantial GPU comput
 ## Data Preparation
 Before fine tuning, we need to prepare the dataset to fine tune the model on. There are many [dataset formats](https://openaccess-ai-collective.github.io/axolotl/docs/dataset-formats/) we can use within axolotl. To get started with fine tuning, it is recommended to use instruction tuning or conversation formats. [Here](https://github.com/OpenAccess-AI-Collective/axolotl/tree/main?tab=readme-ov-file#dataset) are some examples on how to define the different dataset configurations within the axolotl config. You can use a dataset from the hugging face repo, use your own local dataset, or a remote dataset from the cloud or some public URL. Most [examples in the axolotl repo](https://github.com/OpenAccess-AI-Collective/axolotl/blob/main/examples/mistral/lora.yml) uses a hugging face dataset with instruction tuning format, while [Hamel's honeycomb example](https://github.com/parlance-labs/ftcourse/blob/master/hc.yml) uses a local dataset with conversation format. However for specific use cases, we will most likely need to create our own fine tuning dataset based on our private data. Here is the [guide](https://openaccess-ai-collective.github.io/axolotl/docs/config.html) if you want to use your local dataset with your own custom prompt.
 
-Once you have defined the dataset configuration, it is recommended to look at the preprocessed dataset first before jumping into fine tuning. We can do data preprocessing in axolotl by running `python -m axolotl.cli.preprocess {CONFIG_PATH} --debug`, where `CONFIG_PATH` is the path of the config file. If you are using modal, you can run `modal run --detach src.train --config={CONFIG_PATH} --data={DATA_PATH} --preproc-only`, where `data` is an optional argument in case you want to overwrite the dataset specified in the config. Then you can run `modal volume get example-runs-vol {RUN_TAG}/last_run_prepared  _debug_data` to download the preprocessed data locally.
+Once you have defined the dataset configuration, it is recommended to look at the preprocessed dataset first before jumping into fine tuning. We can do data preprocessing in axolotl by running `python -m axolotl.cli.preprocess {CONFIG_PATH} --debug`, where `CONFIG_PATH` is the path of the config file. 
+
+<!-- If you are using modal, you can run `modal run --detach src.train --config={CONFIG_PATH} --data={DATA_PATH} --preproc-only`, where `data` is an optional argument in case you want to overwrite the dataset specified in the config. Then you can run `modal volume get example-runs-vol {RUN_TAG}/last_run_prepared  _debug_data` to download the preprocessed data locally. -->
 
 After the preprocessing run, we can finally look at the preprocessed data by running the following code
 ```python
@@ -43,12 +45,13 @@ print(tok.decode(ds['input_ids'][0]))
 
 Once we have setup our compute resource as well as our fine tuning dataset, we can start our fine tuning process. First we need to create an axolotl config file (there are many [examples](https://github.com/OpenAccess-AI-Collective/axolotl/tree/main/examples) to follow in the axolotl repo), where we can specify the data, model, and other fine tuning parameters to use. We can choose an open source base model to fine tune on from many available models on Hugging Face (e.g. Llama, Mistral).
 
-To run the fine tuning process using axolotl, we can run `accelerate launch -m axolotl.cli.train {CONFIG_PATH}`. If using modal, one can run `modal run --detach src.train --config={CONFIG_PATH} --data={DATA_PATH}` instead, where data is also an optional argument.
+<!-- If using modal, one can run `modal run --detach src.train --config={CONFIG_PATH} --data={DATA_PATH}` instead, where data is also an optional argument. -->
 
-After the fine tuning process is completed, the model files will be stored in a directory path specified by `output_dir` in the config file. In case one wants to save the merged LORA to base model, one can run `python3 -m axolotl.cli.merge_lora {CONFIG_PATH} --lora_model_dir="./completed-model"`, where `lora_model_dir` is an optional argument for specifying the path to save the model.
+To run the fine tuning process using axolotl, we can run `accelerate launch -m axolotl.cli.train {CONFIG_PATH}`. After the fine tuning process is completed, the model files will be stored in a directory path specified by `output_dir` in the config file. In case one wants to save the merged LORA to base model, one can run `python3 -m axolotl.cli.merge_lora {CONFIG_PATH} --lora_model_dir="./completed-model"`, where `lora_model_dir` is an optional argument for specifying the path where the LORA adapter was saved.
 
 ## Inference
-To perform inference, we can run `accelerate launch -m axolotl.cli.inference {CONFIG_PATH} --lora_model_dir={MODEL_PATH} --gradio` where gradio is an optional parameter to run using a gradio UI. In modal, we can simply run `modal run -q src.inference`.
+To perform inference, we can run `accelerate launch -m axolotl.cli.inference {CONFIG_PATH} --lora_model_dir={MODEL_PATH} --gradio` where gradio is an optional parameter to run using a gradio UI. 
+<!-- In modal, we can simply run `modal run -q src.inference`. -->
 
 ## Examples
 - [Axolotl Quickstart Example](https://github.com/OpenAccess-AI-Collective/axolotl?tab=readme-ov-file#quickstart-)
