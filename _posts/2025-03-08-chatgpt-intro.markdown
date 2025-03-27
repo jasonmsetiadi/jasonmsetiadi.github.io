@@ -49,7 +49,9 @@ This is where tools come into play. The integration of various specialized tools
     <img src="/assets/chatgpt/file-upload.png" width="75%"/>
 </div>
 
-ChatGPT currently supports file uploads for various formats, including images, text files, spreadsheets (CSV/Excel), presentations, documents, and PDFs. This capability enables users to perform several tasks:
+ChatGPT currently supports file uploads for various formats, including images, text files, spreadsheets (CSV/Excel), presentations, documents, and PDFs. We actually can divide these into 2 since they are processed differently, images vs text documents. The model is actually capable of not just receiving text inputs, but it also can understand image inputs. Given the files beside images are treated as text processing, any images embedded within these file formats will not be extracted or captured by the model. if your document is actually an image (for example, a scanned document), then consider uploading as image instead of as document file.
+
+This capability enables users to perform several tasks:
 
 1. **Synthesis**: Users can upload files to combine or analyze information, such as comparing two documents or visualizing data from a spreadsheet.
 
@@ -57,9 +59,11 @@ ChatGPT currently supports file uploads for various formats, including images, t
 
 3. **Extraction**: Users can pull specific information from documents, such as finding references to a topic in a PDF or extracting metadata.
 
-However, it is important to note that ChatGPT cannot analyze images embedded in documents or presentations and only processes text in PDFs that contain images.
-
 (https://help.openai.com/en/articles/8555545-file-uploads-faq)
+
+Example
+ocr on images
+summarize a given text document
 
 ### 2. Search
 <div style="text-align: center;">
@@ -72,21 +76,31 @@ For more detailed information about this feature, visit the [official ChatGPT Se
 
 Here is one straightforward example of using the search tool to browse for daily news.
 <div style="text-align: center;">
-    <img src="/assets/chatgpt/search.png" width="75%"/>
+    <img src="/assets/chatgpt/" width="75%"/>
 </div>
 prompt : What are today's top news headlines about Indonesia? present your answer in brief bullet points
 
-
 ### 3. Reason
-
-### 4. Data Analysis
 <div style="text-align: center;">
     <img src="/assets/chatgpt/reason.png" width="75%"/>
 </div>
 
+### 4. Data Analysis
+
+The model is generally bad at doing math. this is where data analysis tool helps chatgpt to make accurate calculations. it will generate python code instead of doing the calculation on its own. then the code will run to get the output as the answer. this approach is more accurate compared to believing the model will give the right answer.
+
 (https://help.openai.com/en/articles/8437071-data-analysis-with-chatgpt)
 
+Example
+<div style="text-align: center;">
+    <img src="/assets/chatgpt/code-interpreter.png" width="75%"/>
+</div>
+
 ### 5. DALL-E
+
+Up until now we have only seen the model output text. but the model is also capable of generating images.
+
+Example
 <div style="text-align: center;">
     <img src="/assets/chatgpt/image-gen.png" width="75%"/>
 </div>
@@ -96,6 +110,7 @@ prompt : What are today's top news headlines about Indonesia? present your answe
     <img src="/assets/chatgpt/voice.png" width="75%"/>
 </div>
 
+The model can also receive audio data as input, and output / generate audio directly instead of text.
 
 # References
 https://help.openai.com/en/collections/3742473-chatgpt
