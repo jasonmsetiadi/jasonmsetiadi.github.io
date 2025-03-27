@@ -27,7 +27,9 @@ Users can request help with writing essays, reports, or emails, making it a vers
     <img src="/assets/chatgpt/example-2.png" width="75%"/>
 </div>
 
-ChatGPT can provide information on a wide range of historical topics, offering quick access to reliable facts and knowledge. However, it's important to note that the model's knowledge is based on data available up until its training date, which serves as its knowledge cutoff.
+ChatGPT can provide comprehensive information on a wide range of historical topics, offering quick access to reliable facts and knowledge. 
+However, it's important to understand that the model's knowledge is limited to data available up until its training cutoff date. 
+For real-time information or current events that occurred after this cutoff, additional tools are required - which we'll explore later in this guide.
 
 ### 3. Language Translation
 <div style="text-align: center;">
@@ -37,6 +39,10 @@ ChatGPT can provide information on a wide range of historical topics, offering q
 The model can assist in translating text across different languages and can also be a valuable tool for learning new languages, facilitating communication and understanding in multilingual contexts.
 
 ## Tools
+
+We have seen the general capabilities of ChatGPT's base model in the examples above. However, despite its impressive performance, the model still has inherent limitations that restrict its ability to perform certain types of tasks.
+
+This is where tools come into play. The integration of various specialized tools helps bridge these limitations, significantly enhancing the model's capabilities and allowing it to perform more complex and powerful tasks. Let's explore these tools and how they extend ChatGPT's functionality:
 
 ### 1. File Uploads
 <div style="text-align: center;">
@@ -60,7 +66,16 @@ However, it is important to note that ChatGPT cannot analyze images embedded in 
     <img src="/assets/chatgpt/search.png" width="75%"/>
 </div>
 
-(https://help.openai.com/en/collections/11125336-search)
+The search tool effectively bridges ChatGPT's knowledge limitations regarding current events and up-to-date information. By integrating internet search capabilities, ChatGPT can access real-time data to provide more accurate and timely responses to your questions.
+A key advantage of this feature is transparency - ChatGPT will provide links to the web sources it references, allowing you to verify information and explore topics further on your own. This makes the search tool particularly valuable for research, fact-checking, and staying informed about recent developments that occurred after the model's training cutoff date.
+For more detailed information about this feature, visit the [official ChatGPT Search documentation](https://help.openai.com/en/articles/9237897-chatgpt-search).
+
+Here is one straightforward example of using the search tool to browse for daily news.
+<div style="text-align: center;">
+    <img src="/assets/chatgpt/search.png" width="75%"/>
+</div>
+prompt : What are today's top news headlines about Indonesia? present your answer in brief bullet points
+
 
 ### 3. Reason
 
