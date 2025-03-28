@@ -49,17 +49,22 @@ This is where tools come into play. The integration of various specialized tools
     <img src="/assets/chatgpt/file-upload.png" width="75%"/>
 </div>
 
-ChatGPT currently supports file uploads for various formats, including images, text files, spreadsheets (CSV/Excel), presentations, documents, and PDFs. We actually can divide these into 2 since they are processed differently, images vs text documents. The model is actually capable of not just receiving text inputs, but it also can understand image inputs. Given the files beside images are treated as text processing, any images embedded within these file formats will not be extracted or captured by the model. if your document is actually an image (for example, a scanned document), then consider uploading as image instead of as document file.
+ChatGPT supports uploading various file formats, which can be categorized into two main types:
 
-This capability enables users to perform several tasks:
+- **Images**: PNG (.png), JPEG (.jpeg and .jpg), and non-animated GIF (.gif).
+- **Text documents**: Including PDFs, spreadsheets (CSV/Excel), presentations, Microsoft Word documents, and text files
 
-1. **Synthesis**: Users can upload files to combine or analyze information, such as comparing two documents or visualizing data from a spreadsheet.
+So far, we only know that ChatGPT can receive text inputs. However, it can also process images, introducing a new modality beyond just text. Text documents are still treated as text input, meaning any embedded images within them will not be processed. If you're working with scanned documents (which are essentially images), upload them as images rather than documents for better results.
 
-2. **Transformation**: Users can reshape information from documents, like summarizing a complex research paper or rewriting a document in a specific style.
+This file upload tool enables three key types of tasks:
 
-3. **Extraction**: Users can pull specific information from documents, such as finding references to a topic in a PDF or extracting metadata.
+1. **Synthesis**: Combine or analyze information, such as comparing two documents or visualizing data from a spreadsheet.
 
-(https://help.openai.com/en/articles/8555545-file-uploads-faq)
+2. **Transformation**: Reshape information from documents, like summarizing a complex research paper or rewriting a document in a specific style.
+
+3. **Extraction**: Pull specific information from documents, such as finding references to a topic in a PDF or extracting metadata.
+
+For more detailed information about this feature, visit the [official ChatGPT File Uploads documentation](https://help.openai.com/en/articles/8555545-file-uploads-faq).
 
 Example
 ocr on images
