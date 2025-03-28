@@ -65,3 +65,14 @@ This file upload tool enables three key types of tasks:
 3. **Extraction**: Pull specific information from documents, such as finding references to a topic in a PDF or extracting metadata.
 
 For more detailed information about this feature, visit the [official ChatGPT File Uploads documentation](https://help.openai.com/en/articles/8555545-file-uploads-faq).
+
+### 2. Search
+<div style="text-align: center;">
+    <img src="/assets/chatgpt/search.png" width="75%"/>
+</div>
+
+The search tool effectively bridges ChatGPT's knowledge limitations regarding current events and up-to-date information. By integrating internet search capabilities, ChatGPT can access real-time data to provide more accurate and timely responses to your questions.
+
+A key advantage of this feature is transparency - ChatGPT will provide links to the web sources it references, allowing you to verify information and explore topics further on your own. This makes the search tool particularly valuable for research, fact-checking, and staying informed about recent developments that occurred after the model's training cutoff date.
+
+For more detailed information about this feature, visit the [official ChatGPT Search documentation](https://help.openai.com/en/articles/9237897-chatgpt-search).
