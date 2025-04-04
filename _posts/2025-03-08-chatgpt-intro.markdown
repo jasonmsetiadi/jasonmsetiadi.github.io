@@ -69,12 +69,12 @@ For more detailed information about this feature, visit the [official ChatGPT Fi
 Here are a couple of examples showcasing the file upload capabilities:
 
 <div style="text-align: center;">
-    <img src="/assets/chatgpt/examples/ocr.png" width="50%"/>
+    <img src="/assets/chatgpt/examples/ocr.png" width="75%"/>
     <p><i>Extracting text from an invoice image using Optical Character Recognition (OCR)</i></p>
 </div>
 
 <div style="text-align: center;">
-    <img src="/assets/chatgpt/examples/summarize.png" width="50%"/>
+    <img src="/assets/chatgpt/examples/summarize.png" width="75%"/>
     <p><i>Summarizing the BCA February 2025 financial report</i></p>
 </div>
 
@@ -121,11 +121,11 @@ For more detailed information about this feature, visit the [official ChatGPT Im
 
 Here are some practical applications:
 <div style="text-align: center;">
-        <img src="/assets/chatgpt/examples/image-gen.png" width="50%"/>
+        <img src="/assets/chatgpt/examples/image-gen.png" width="75%"/>
         <p><i>Creating compelling real estate advertisements with custom imagery</i></p>
 </div>
 
 <div style="text-align: center;">
-    <img src="/assets/chatgpt/examples/image-edit.png" width="50%"/>
+    <img src="/assets/chatgpt/examples/image-edit.png" width="75%"/>
     <p><i>Changing President Trump's suit and tie to batik</i></p>
 </div>
