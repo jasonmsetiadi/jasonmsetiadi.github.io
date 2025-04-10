@@ -128,7 +128,7 @@ Here are some practical applications:
 <div style="text-align: center;">
     <img src="/assets/chatgpt/examples/image-edit.png" width="75%"/>
     <p><i>Changing President Trump's suit and tie to batik</i></p>
-</div></div>
+</div>
 
 ### 5. Coding
 
