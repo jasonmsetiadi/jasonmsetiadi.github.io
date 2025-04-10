@@ -128,4 +128,43 @@ Here are some practical applications:
 <div style="text-align: center;">
     <img src="/assets/chatgpt/examples/image-edit.png" width="75%"/>
     <p><i>Changing President Trump's suit and tie to batik</i></p>
+</div></div>
+
+### 5. Coding
+
+Today, large language models are not well suited to solve math problems. As we humans can do simple mental arithmetic on our head, but for complex math we need to write on pen paper or use a calculator. This is mainly due to the way these models work under the hood. Using a technique called next token prediction, the model looks and input it was given (in this case a math problem) and makes an approximate guess based on data it was trained on. This tends to work very well for more creative tasks like writing, but with math, where there is a definite answer, this approach is less effective.
+
+Furthermore, due to tokenization, models are not very good at counting or spelling tasks. this is because they dont see letter by letter, but by letter chunks called tokens.
+
+this is where data analysis tool helps chatgpt to make accurate calculations. It is ChatGPT’s ability to both write and execute code that enables it to perform complex mathematical operations and statistical analysis techniques. then the code will run to get the output as the answer. this approach is more accurate compared to believing the model will give the right answer.
+
+When analyzing data, ChatGPT gets access to a secure code execution environment. The environment is pre-loaded with hundreds of Python libraries, and ChatGPT knows how to write code to import and use these libraries. 
+
+When ChatGPT generates code in response to your prompt, it passes that code to the environment for execution. It then has access to environment outputs, including any errors produced by the generated code. ChatGPT is able to interpret errors and resolve issues with the generated code automatically.
+
+The ChatGPT code execution environment is unable to generate outbound network requests directly. Code execution is also isolated from the rest of the ChatGPT hosting platform, which ensures the safety of the feature.
+
+ a new instance of the code execution environment is generated. This instance is only accessible from within the associated conversation, and is destroyed within 13 hours of the conversation becoming inactive.
+
+guide for doing data analysis in chatgpt (https://help.openai.com/en/articles/8437071-data-analysis-with-chatgpt)
+
+Example complex math
+<div style="text-align: center;">
+    <img src="/assets/chatgpt/examples/code-interpreter.png" width="75%"/>
 </div>
+
+Example spelling (how many rs in strawberry)
+<div style="text-align: center;">
+    <img src="/assets/chatgpt/examples/code-interpreter.png" width="75%"/>
+</div>
+
+### 6. Voice
+<div style="text-align: center;">
+    <img src="/assets/chatgpt/voice.png" width="75%"/>
+</div>
+
+The model can also receive audio data as input, and output / generate audio directly instead of text.
+
+# References
+https://help.openai.com/en/collections/3742473-chatgpt
+https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview
