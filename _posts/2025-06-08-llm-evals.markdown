@@ -9,9 +9,7 @@ mathjax: false
 
 The moat behind every successful AI product is the robust evaluation, or "Evals". This is what sets your product apart from all other competitors. Through doing Evals, you get a better understanding of your users' and customers' needs more than anyone else. You learn what they want from your product, identify where your product falls short, and continuously make concrete improvements. This continuous feedback loop of evaluation and improvement is the key to building a truly exceptional product.
 
-before doing evals, need to know and determine the ground truth label (expected answer), usually from one domain expert as the human evaluator (benevolent dictator).
-
-3 main steps of LLM Evaluation: Analyze - Measure - Improve
+Before diving into Evals, it's essential to know how to determine the ground truth label - the expected, correct answer. This is usually defined by one domain expert (or group of experts) as the human evaluator, defining precisely what a successful AI output looks like and ensuring alignment with their expectations. The entire LLM evaluation process can then be effectively broken down into three core stages: Analyze, Measure, and Improve.
 
 ## Analyze
 
