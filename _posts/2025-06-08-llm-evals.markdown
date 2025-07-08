@@ -3,7 +3,7 @@ layout: post
 comments: true
 title: "LLM Evaluation Lifecycle"
 excerpt: "Build robust evaluation life cycle for your LLM applications."
-date:   2023-08-30 07:00:00
+date:   2025-06-08 07:00:00
 mathjax: false
 ---
 
