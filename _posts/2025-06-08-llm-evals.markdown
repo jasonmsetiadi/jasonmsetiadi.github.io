@@ -20,25 +20,25 @@ Here's how to conduct effective error analysis:
 1. [**Generate Your Evaluation Dataset:**](https://github.com/ai-evals-course/recipe-chatbot/blob/55445295232064ba857b7a174c913120b0cb36b4/homeworks/hw2/generate_synthetic_queries.py)
     * Start by listing every possible realistic query your users might throw at your app.
     * Identify the key dimensions of your product (e.g., types of inputs, specific features). Then, create unique combinations (tuples) of these dimensions to generate a comprehensive set of user queries.
-    * **Your Goal:** A CSV file containing a unique ID and query for each entry (e.g., `id, query`). [sample](https://github.com/ai-evals-course/recipe-chatbot/blob/55445295232064ba857b7a174c913120b0cb36b4/homeworks/hw2/synthetic_queries_for_analysis.csv)
+    * **Your Goal:** A CSV file containing a unique ID and query for each entry (e.g., `id, query`). ([sample](https://github.com/ai-evals-course/recipe-chatbot/blob/55445295232064ba857b7a174c913120b0cb36b4/homeworks/hw2/synthetic_queries_for_analysis.csv))
     
 2. [**Run Traces on Your Evaluation Dataset:**](https://github.com/ai-evals-course/recipe-chatbot/blob/55445295232064ba857b7a174c913120b0cb36b4/scripts/bulk_test.py)
     * Feed your evaluation dataset through your AI agent and capture its responses.
-    * **Your Goal:** A CSV or JSON file that includes the `id`, `query`, and the agent's `response` for each interaction. [sample](https://github.com/ai-evals-course/recipe-chatbot/blob/55445295232064ba857b7a174c913120b0cb36b4/homeworks/hw2/results_20250518_215844.csv)
+    * **Your Goal:** A CSV or JSON file that includes the `id`, `query`, and the agent's `response` for each interaction. ([sample](https://github.com/ai-evals-course/recipe-chatbot/blob/55445295232064ba857b7a174c913120b0cb36b4/homeworks/hw2/results_20250518_215844.csv))
     
 3. [**Set Up Your Annotation App:**](https://github.com/ai-evals-course/recipe-chatbot/blob/55445295232064ba857b7a174c913120b0cb36b4/annotation/annotation.py)
     * To speed up the human feedback process, build a custom interface. This app will be crucial for "open coding" (detailed individual notes) and "axial coding" (categorizing those notes).
-    * You can use existing tools like Phoenix or Braintrust, or even build your own through vibe coding using frameworks like HTML/CSS + FastAPI or FastHTML + HTMX / MonsterUI. [tutorial](https://youtu.be/qH1dZ8JLLdU?si=8aejLH8ilEHi-qoN)
+    * You can use existing tools like Phoenix or Braintrust, or even build your own through vibe coding using frameworks like HTML/CSS + FastAPI or FastHTML + HTMX / MonsterUI. ([tutorial](https://youtu.be/qH1dZ8JLLdU?si=8aejLH8ilEHi-qoN))
     * **Your Goal:** A functional annotation application.
     
 4. **Open Coding (Detailed Human Feedback):**
     * Go through each recorded trace manually. For every interaction, provide detailed human feedback and notes on what went well or wrong. Think of this as jotting down all your raw observations.
-    * **Your Goal:** Your traces CSV/JSON file will now be updated with these detailed open coding notes.
+    * **Your Goal:** Your traces CSV/JSON file will now be updated with these detailed `open_coding` notes.
 
 5. **Axial Coding (Categorize Failure Modes):**
     * Now, take your open coding notes and categorize them into specific "failure modes". This means grouping similar issues together (e.g., "hallucinations," "irrelevant responses," "misinterpretation of intent").
     * You can even leverage an LLM to help you generate a taxonomy of these failure modes with a well-crafted prompt.
-    * **Your Goal:** Your traces CSV/JSON file will be further updated with these organized axial coding notes, giving you clear insights into recurring problems.
+    * **Your Goal:** Your traces CSV/JSON file will be further updated with the `axial_coding_code`, giving you clear insights into recurring problems.
 
 
 ## Measure
