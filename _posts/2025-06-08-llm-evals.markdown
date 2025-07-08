@@ -13,7 +13,7 @@ before doing evals, need to know and determine the ground truth label (expected 
 
 3 main steps of LLM Evaluation: Analyze - Measure - Improve
 
-# Analyze
+## Analyze
 
 The goal of error analysis is to discover what is actually breaking (errors) within our app, and knowing how our app is actually being used by users. Here are the steps to do error analysis:
 
@@ -57,7 +57,7 @@ The goal of error analysis is to discover what is actually breaking (errors) wit
     end result: modifies the traces csv/json file with axial coding notes
 
 
-# Measure
+## Measure
 
 The goal of Measure step is to quantify the performance of our application. After doing error analysis, we have known the different failure modes that exist in our application. The way we measure performance for generative outputs is to have a metric for each failure mode we want to evaluate, hence we may have multiple metrics. make sure to have a metric for each simple single narrow scoped failure mode.
 
@@ -71,7 +71,7 @@ The way we quantify/measure the performance of LLM applications is as follows:
 This way we can make improvements to our application and measure again the performance to see if it actually has improved or not.
 
 
-# Improve
+## Improve
 
 After the Measure step, we have a more deterministic way to check whether changes that we made to the system actually improve the system or not for a given failure mode. It is not best practice to skip the Measure step as you will most likely just eye ball responses and subjectively decide improvements when you see less errors for the given failure mode. That does not guarantee that your system has actually improved for handling the given failure mode (need to quantify the improvement).
 
