@@ -7,7 +7,7 @@ date:   2025-06-08 07:00:00
 mathjax: false
 ---
 
-The moat behind every successful AI product is actually the robust Evals. it is what makes your product a step better than all other competitors. it is what makes you understand what the users/customers want more than anyone else. you understand what users want out of your product, what your product is failing at, and keep on making certain improvements. 
+The moat behind every successful AI product is the robust evaluation, or "Evals". This is what sets your product apart from all other competitors. Through doing Evals, you get a better understanding of your users' and customers' needs more than anyone else. You learn what they want from your product, identify where your product falls short, and continuously make concrete improvements. This continuous feedback loop of evaluation and improvement is the key to building a truly exceptional product.
 
 before doing evals, need to know and determine the ground truth label (expected answer), usually from one domain expert as the human evaluator (benevolent dictator).
 
