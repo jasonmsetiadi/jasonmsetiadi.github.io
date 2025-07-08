@@ -1,0 +1,84 @@
+---
+layout: post
+comments: true
+title: "LLM Evaluation Lifecycle"
+excerpt: "Build robust evaluation life cycle for your LLM applications."
+date:   2023-08-30 07:00:00
+mathjax: false
+---
+
+The moat behind every successful AI product is actually the robust Evals. it is what makes your product a step better than all other competitors. it is what makes you understand what the users/customers want more than anyone else. you understand what users want out of your product, what your product is failing at, and keep on making certain improvements. 
+
+before doing evals, need to know and determine the ground truth label (expected answer), usually from one domain expert as the human evaluator (benevolent dictator).
+
+3 main steps of LLM Evaluation: Analyze - Measure - Improve
+
+# Analyze
+
+The goal of error analysis is to discover what is actually breaking (errors) within our app, and knowing how our app is actually being used by users. Here are the steps to do error analysis:
+
+1. [generate evaluation dataset](https://github.com/ai-evals-course/recipe-chatbot/blob/55445295232064ba857b7a174c913120b0cb36b4/homeworks/hw2/generate_synthetic_queries.py)
+    
+    list down all possible realistic user queries for your app
+    
+    identify key dimensions > generate unique combinations (tuples) > generate user queries
+    
+    **end result:** store as [csv of id, query](https://github.com/ai-evals-course/recipe-chatbot/blob/55445295232064ba857b7a174c913120b0cb36b4/homeworks/hw2/synthetic_queries_for_analysis.csv)
+    
+2. [run traces on evaluation dataset](https://github.com/ai-evals-course/recipe-chatbot/blob/55445295232064ba857b7a174c913120b0cb36b4/scripts/bulk_test.py)
+    
+    run agent response on the evaluation dataset
+    
+    **end result:** store to a [csv/json of id, query, and response](https://github.com/ai-evals-course/recipe-chatbot/blob/55445295232064ba857b7a174c913120b0cb36b4/homeworks/hw2/results_20250518_215844.csv)
+    
+3. setup annotation app
+    
+    build custom interface for (speeding up) the annotation process (open and axial coding). can use tools like Phoenix, Braintrust, or build your own using vibe coding ([tutorial](https://youtu.be/qH1dZ8JLLdU?si=8aejLH8ilEHi-qoN)) also last part of lesson 7
+    
+    - HTML/CSS + FastAPI
+    - FastHTML + HTMX / MonsterUI
+    
+    end result: example [app](https://github.com/ai-evals-course/recipe-chatbot/blob/55445295232064ba857b7a174c913120b0cb36b4/annotation/annotation.py)
+    
+4. open coding
+    
+    going through each trace and manually give human feedback
+    
+    end result: modifies the traces csv/json file with open coding notes
+    
+5. axial coding
+    
+    categorize open coding notes into (groups of) failure modes. 
+    
+    can use LLM to help with this to create failure mode taxonomy
+    
+    example prompt
+    
+    end result: modifies the traces csv/json file with axial coding notes
+
+
+# Measure
+
+The goal of Measure step is to quantify the performance of our application. After doing error analysis, we have known the different failure modes that exist in our application. The way we measure performance for generative outputs is to have a metric for each failure mode we want to evaluate, hence we may have multiple metrics. make sure to have a metric for each simple single narrow scoped failure mode.
+
+The way we quantify/measure the performance of LLM applications is as follows:
+
+1. Let’s say we have 100 user **inputs**. these can be stored as as our evaluation dataset as they are fixed.
+2. we then can generate **responses** from our application on those inputs. 
+3. we can have precise definitions of Pass/Fail to evaluate those responses. based on that, we **label** each response as Pass/Fail.
+4. If out of the 100 responses, 85 passed and 15 failed, then the **performance** of the application for the given failure mode is 85%. 
+
+This way we can make improvements to our application and measure again the performance to see if it actually has improved or not.
+
+
+# Improve
+
+After the Measure step, we have a more deterministic way to check whether changes that we made to the system actually improve the system or not for a given failure mode. It is not best practice to skip the Measure step as you will most likely just eye ball responses and subjectively decide improvements when you see less errors for the given failure mode. That does not guarantee that your system has actually improved for handling the given failure mode (need to quantify the improvement).
+
+Here are ways to Improve an LLM system
+
+1. Set model parameters
+2. Prompt engineering
+3. RAG / Tools
+4. Fine tuning
+5. Choose a more capable model
