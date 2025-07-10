@@ -43,16 +43,16 @@ Here's how to conduct effective error analysis:
 
 ## Measure
 
-The goal of Measure step is to quantify the performance of our application. After doing error analysis, we have known the different failure modes that exist in our application. The way we measure performance for generative outputs is to have a metric for each failure mode we want to evaluate, hence we may have multiple metrics. make sure to have a metric for each simple single narrow scoped failure mode.
+The "Measure" stage is dedicated to **quantifying the performance of your AI application**. This is where you establish clear metrics to understand how well your product is meeting its objectives.
 
-The way we quantify/measure the performance of LLM applications is as follows:
+Here's the typical process for measuring the performance of LLM applications:
 
-1. Let’s say we have 100 user **inputs**. these can be stored as as our evaluation dataset as they are fixed.
-2. we then can generate **responses** from our application on those inputs. 
-3. we can have precise definitions of Pass/Fail to evaluate those responses. based on that, we **label** each response as Pass/Fail.
-4. If out of the 100 responses, 85 passed and 15 failed, then the **performance** of the application for the given failure mode is 85%. 
+1.  **Define Your Evaluation Dataset:** Begin with a fixed set of user **inputs** (e.g., 100 queries). You can start by using inputs from the "Analyze" step that represent diverse scenarios, but it's crucial to continually add new inputs encountered from real-world production use cases.
+2.  **Generate Application Responses:** Run your application on this evaluation dataset to generate **responses** for each input.
+3.  **Label Responses with Pass/Fail Criteria:** Based on precise, predefined definitions of success and failure (often derived from your "Analyze" phase's failure modes), **label** each generated response as either "Pass" or "Fail".
+4.  **Calculate Performance Metrics:** Aggregate your labels. For instance, if 85 out of 100 responses passed and 15 failed, the application's performance for the evaluated criteria is 85%.
 
-This way we can make improvements to our application and measure again the performance to see if it actually has improved or not.
+This systematic approach allows you to make targeted improvements to your application and then re-measure performance to objectively verify the impact of your changes.
 
 
 ## Improve
