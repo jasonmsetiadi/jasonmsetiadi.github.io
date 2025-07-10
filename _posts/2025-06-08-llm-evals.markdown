@@ -56,13 +56,14 @@ This systematic approach allows you to make targeted improvements to your applic
 
 
 ## Improve
+The "Improve" stage is where you leverage the insights from "Analyze" and "Measure" to **make concrete enhancements to your AI system**. This step is critical for closing the feedback loop and ensuring continuous product evolution.
 
-After the Measure step, we have a more deterministic way to check whether changes that we made to the system actually improve the system or not for a given failure mode. It is not best practice to skip the Measure step as you will most likely just eye ball responses and subjectively decide improvements when you see less errors for the given failure mode. That does not guarantee that your system has actually improved for handling the given failure mode (need to quantify the improvement).
+It's vital *not* to skip the "Measure" step before making changes. Without quantitative measurement, you risk making subjective improvements based on "eyeballing" responses. This doesn't guarantee actual system improvement; you need to quantify the impact of your changes to confirm real progress.
 
-Here are ways to Improve an LLM system
+Here are common strategies to improve an LLM system:
 
-1. Set model parameters
-2. Prompt engineering
-3. RAG / Tools
-4. Fine tuning
-5. Choose a more capable model
+1.  **Set Model Parameters:** Adjusting parameters like temperature, top-p, or max tokens can significantly influence the model's output, affecting creativity, conciseness, or adherence to instructions.
+2.  **Prompt Engineering:** Refining your prompts—through techniques like clear instructions, few-shot examples, or chain-of-thought prompting—can guide the LLM to produce more accurate and desired responses.
+3.  **RAG / Tools (Retrieval Augmented Generation):** Integrating external knowledge bases or tools allows the LLM to access and utilize up-to-date, specific, or proprietary information, greatly enhancing its factual accuracy and capability.
+4.  **Fine-tuning:** Training a base LLM on a smaller, domain-specific dataset can specialize its knowledge and behavior, making it more performant for particular tasks or styles.
+5.  **Choose a More Capable Model:** Upgrading to a newer, larger, or more advanced LLM can inherently improve performance, especially if your current model struggles with complexity or nuanced understanding.
