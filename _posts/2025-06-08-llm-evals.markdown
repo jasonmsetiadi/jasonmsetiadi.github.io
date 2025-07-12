@@ -54,6 +54,54 @@ Here's the typical process for measuring the performance of LLM applications:
 
 This systematic approach allows you to make targeted improvements to your application and then re-measure performance to objectively verify the impact of your changes.
 
+---
+
+### Automating Evaluation: Different Outputs, Different Evaluators
+
+Manually labeling responses (Step 3) is often the most time-consuming part of the evaluation process. To make this more efficient and scalable, we can **automate the labeling process** by creating automated evaluators. However, the choice of automated evaluator depends critically on the type of output your AI system produces.
+
+In most LLM applications, outputs generally fall into two distinct categories: **generative** and **structured**. These types differ significantly in how their performance is best measured.
+
+#### Generative Outputs
+
+Generative outputs are free-form, creative, and inherently non-deterministic. This means the same input can yield varied, yet equally valid, outputs. Because there's typically no single "correct" answer, evaluating generative outputs is more complex and often subjective.
+
+To measure performance effectively for generative outputs:
+
+* First, conduct thorough error analysis (from the "Analyze" stage) to identify specific **failure modes** (e.g., factual errors, tone issues, hallucinations, lack of coherence).
+* For each narrow, clearly defined failure mode, you can then define a precise Pass/Fail metric. This approach allows for **multiple performance metrics**, each targeting a specific failure area, enabling modular and systematic improvement.
+
+#### Structured Outputs
+
+Structured outputs, as the name implies, adhere to a predefined and deterministic format, such as JSON objects, key-value pairs, or fixed fields. Because the structure is known in advance, evaluation becomes much more straightforward.
+
+For structured outputs:
+
+* You typically have **ground truth data** – the exact expected output – which can be used as a direct reference.
+* This allows for immediate computation of performance metrics without requiring prior extensive error analysis.
+* Evaluation is typically done using a Pass/Fail method by comparing the AI-generated output to the ground truth, often requiring an exact match or meeting specific field-level criteria.
+
+---
+
+### Types of Automated LLM Evaluators
+
+Given the different nature of LLM outputs, there are two primary types of automated evaluators used to measure performance:
+
+#### Code-based Evaluators
+
+* **Primarily Used For:** Structured outputs.
+* **How They Work:** These evaluators use programmatic logic (e.g., Python scripts, regex, JSON schema validation) to deterministically compare the AI's structured output against a predefined ground truth or set of rules.
+* **Benefits:** They offer 100% alignment with the defined ground truth when the output format and expected values are precise. This makes them highly reliable for labeling evaluation datasets automatically.
+* **Considerations:** They are efficient and fair for production use as long as their latency is minimal.
+
+#### LLM-as-Judge Evaluators
+
+* **Primarily Used For:** Generative outputs.
+* **How They Work:** You build this evaluator for each single, narrowly scoped failure mode. A separate LLM (the "judge") is prompted with the user query, the AI's response, and a clear rubric or set of criteria. The judge then assesses the response and assigns a "Pass" or "Fail" label (or a score).
+* **Alignment:** Since generative outputs are non-deterministic, you need to **calibrate** the LLM-as-Judge evaluator to align its judgments with human expert ground truth labels through careful prompt engineering and validation.
+* **Considerations:** Implementing LLM-as-Judge evaluators can be computationally expensive and increase latency. Therefore, they are typically reserved for critical failure modes that absolutely need to be mitigated and where human-like nuanced judgment is essential.
+
+---
 
 ## Improve
 The "Improve" stage is where you leverage the insights from "Analyze" and "Measure" to **make concrete enhancements to your AI system**. This step is critical for closing the feedback loop and ensuring continuous product evolution.
