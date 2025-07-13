@@ -68,16 +68,17 @@ Generative outputs are free-form, creative, and inherently non-deterministic. Th
 
 To measure performance effectively for generative outputs:
 
-* First, conduct thorough error analysis (from the "Analyze" stage) to identify specific **failure modes** (e.g., factual errors, tone issues, hallucinations, lack of coherence).
-* For each narrow, clearly defined failure mode, you can then define a precise Pass/Fail metric. This approach allows for **multiple performance metrics**, each targeting a specific failure area, enabling modular and systematic improvement.
+* First, conduct thorough error analysis (from the "Analyze" stage) to identify specific failure modes (e.g., factual errors, tone issues, hallucinations, lack of coherence).
+* There is often no single "ground truth" since, due to their subjective and varied nature, comparing generative outputs typically involves human judgment or qualitative assessment rather than a direct, objective reference.
+* For each narrow, clearly defined failure mode, you can then define a precise Pass/Fail metric. This approach allows for multiple performance metrics, each targeting a specific failure area, enabling modular and systematic improvement.
 
 #### Structured Outputs
 
 Structured outputs, as the name implies, adhere to a predefined and deterministic format, such as JSON objects, key-value pairs, or fixed fields. Because the structure is known in advance, evaluation becomes much more straightforward.
 
-For structured outputs:
+To measure performance effectively for structured outputs:
 
-* You typically have **ground truth data** – the exact expected output – which can be used as a direct reference.
+* You typically have ground truth data – the exact expected output – which can be used as a direct reference.
 * This allows for immediate computation of performance metrics without requiring prior extensive error analysis.
 * Evaluation is typically done using a Pass/Fail method by comparing the AI-generated output to the ground truth, often requiring an exact match or meeting specific field-level criteria.
 
