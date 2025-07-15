@@ -105,6 +105,36 @@ Given the different nature of LLM outputs, there are two primary types of automa
 * **Alignment:** Since LLMs are inherently non-deterministic, you need to calibrate the LLM-as-Judge evaluator to align its judgments with human expert ground truth labels through careful prompt engineering and validation.
 * **Considerations:** Best used only for evaluation purposes. While optional for production, be mindful of additional latency and cost. If an LLM judge flags a response in production, you can show it, regenerate a new response, or explain the failure to the user.
 
+### Aligning LLM-as-Judge Evaluators
+
+Here are the steps to align an LLM-as-Judge evaluator, assuming you already have traces on your evaluation dataset after performing the "Analyze" step:
+
+1. **Define the Failure Mode to Evaluate:** Clearly identify the specific failure mode you want the LLM-as-Judge to evaluate (e.g., "hallucinations," "irrelevant responses").
+2. **Manually Label Evaluation Dataset:** For the defined failure mode, manually label a subset of your evaluation dataset with "Pass" or "Fail" based on human expert judgment. This creates your ground truth.
+3. **Train-Dev-Test Split:** Divide your manually labeled dataset into training (15%), development (40%), and test (45%) sets. 
+You can use random splitting or [stratified splitting](https://github.com/jasonmsetiadi/recipe-chatbot/blob/main/homeworks/hw3/scripts/split_data.py) (to ensure similar label distribution across sets).
+4. [Train the LLM-as-Judge evaluator](https://github.com/jasonmsetiadi/recipe-chatbot/blob/main/homeworks/hw3/scripts/develop_judge.py)
+    a. **Develop Judge Prompt:** Craft a prompt for the LLM-as-Judge that includes:
+        - The specific task/criterion (focused on one specific failure mode).
+        - Precise "Pass/Fail" definitions.
+        - 2-3 clear few-shot examples (input, AI agent output, desired judge reasoning, and "Pass/Fail" label) taken from your training set.
+        - The structured output format you expect from the judge (e.g., JSON with reasoning and answer).
+    b. **Evaluate on Dev Set:** Run the LLM-as-Judge on the development set and calculate its True Positive Rate (TPR) and True Negative Rate (TNR).
+    c. **Save Judge Prompt and Predictions:** Store the judge prompt, its predictions, and the performance metrics from the development set evaluation.
+    d. **Improve LLM Judge:** Iteratively refine the judge prompt (e.g., simplify criteria, improve examples) or consider using a more capable LLM as the judge if performance is not satisfactory.
+    e. **Repeat:** Continue refining and evaluating on the development set until TPR and TNR are satisfactory (e.g., >90%).
+5. [Evaluate on Test Dataset:](https://github.com/jasonmsetiadi/recipe-chatbot/blob/main/homeworks/hw3/scripts/evaluate_judge.py) Once satisfied with the development set performance, evaluate the LLM-as-Judge on the unseen test dataset.
+    - Metrics: True Positive Rate (TPR), True Negative Rate (TNR)
+    - Optional: Balanced Accuracy ((TPR+TNR)/2), # of Total Predictions, # of Correct Predictions, Accuracy
+    - Save the test labels and predictions. These will be used later to calculate the judge's corrected true success rate.
+6. [Measure on “New” traces](https://github.com/jasonmsetiadi/recipe-chatbot/blob/main/homeworks/hw3/scripts/run_full_evaluation.py)
+    a. **Prepare Traces:** Use all the labeled traces or new production traces.
+    b. **Run Judge:** Run the LLM-as-Judge on these traces to get its predictions (binary 1s/0s for Pass/Fail).
+    c. **Calculate Corrected True Success Rate:** Using the test labels, test predictions, and the new trace predictions, calculate and save:
+        - The raw pass rate (p_obs) = average of new trace predictions.
+        - The corrected true success rate (θ̂) (using [judgy](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py) library).
+        - The 95% Confidence Interval (CI) for θ (using [judgy](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py) library).
+
 ---
 
 ## Improve
