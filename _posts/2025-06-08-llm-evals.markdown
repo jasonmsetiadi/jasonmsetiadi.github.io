@@ -46,6 +46,10 @@ Here's how to conduct effective error analysis:
     * You can even leverage an LLM to help you generate a taxonomy of these failure modes with a well-crafted prompt.
     * **Your Goal:** Your traces CSV/JSON file will be further updated with the `axial_coding_code`, giving you clear insights into recurring problems.
 
+<aside>
+    The corrected true success rate ($\\hat{\\theta}$) represents the judge's accuracy, reflecting how well its decisions align with human expert labels. For instance, if $\\hat{\\theta} = 1$, the judge is 100% aligned with the ground truth. The confidence interval provides a range of certainty, expressed as: "You can be $\\hat{\\theta}$ [LB, UB] certain of the judge’s decisions." This $\\hat{\\theta}$ is the key metric for the LLM-as-Judge's alignment, allowing it to reliably assess the LLM's performance against the specific failure mode.
+</aside>
+
 ---
 
 ## Measure
