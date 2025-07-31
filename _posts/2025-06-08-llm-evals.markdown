@@ -105,7 +105,7 @@ Given the different nature of LLM outputs, there are two primary types of automa
 * **How They Work:** You build this evaluator for each single, narrowly scoped failure mode. A separate LLM (the "judge") is prompted with the user query, the AI's response, and a clear rubric or set of criteria. The judge then assesses the response and assigns a "Pass" or "Fail" label (or a score).
 * **Alignment:** Since LLMs are inherently non-deterministic, you need to calibrate the LLM-as-Judge evaluator to align its judgments with human expert ground truth labels through careful prompt engineering and validation.
 * **Considerations:** Best used only for evaluation purposes. While optional for production, be mindful of additional latency and cost. If an LLM judge flags a response in production, you can show it, regenerate a new response, or explain the failure to the user.
-* **Metric:**: Corrected true success rate (\\( \hat{\theta} \\))
+* **Metric:**: Corrected true success rate (\\(\hat{\theta}\\))
 
 ### Aligning LLM-as-Judge Evaluators
 
@@ -129,17 +129,18 @@ You can use random splitting or [stratified splitting](https://github.com/jasonm
     - Metrics: True Positive Rate (TPR), True Negative Rate (TNR)
     - Optional: Balanced Accuracy ((TPR+TNR)/2), # of Total Predictions, # of Correct Predictions, Accuracy
     - Save the test labels and predictions. These will be used later to calculate the judge's corrected true success rate.
-6. [Measure on “New” traces](https://github.com/jasonmsetiadi/recipe-chatbot/blob/main/homeworks/hw3/scripts/run_full_evaluation.py)
+  
+### Calculating the Corrected True Success Rate (\\(\hat{\theta}\\))
+
+The corrected true success rate (\\(\hat{\theta}\\)) represents the judge's accuracy, reflecting how well its decisions align with human expert labels. For instance, if $\\hat{\\theta} = 1$, the judge is 100% aligned with the ground truth. The confidence interval provides a range of certainty, expressed as: "You can be \\(\hat{\theta}\\) [LB, UB] certain of the judge’s decisions." This \\(\hat{\theta}\\) is the key metric for the LLM-as-Judge's alignment, allowing it to reliably assess the LLM's performance against the specific failure mode.
+
+Here's how to calculate the metric ([Measure on “New” traces](https://github.com/jasonmsetiadi/recipe-chatbot/blob/main/homeworks/hw3/scripts/run_full_evaluation.py)):
     1. **Prepare Traces:** Use all the labeled traces or new production traces.
     2. **Run Judge:** Run the LLM-as-Judge on these traces to get its predictions (binary 1s/0s for Pass/Fail).
     3. **Calculate Corrected True Success Rate:** Using the test labels, test predictions, and the new trace predictions, calculate and save:
-        - The raw pass rate (p_obs) = average of new trace predictions.
-        - The corrected true success rate (θ̂) (using [judgy](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py) library).
-        - The 95% Confidence Interval (CI) for θ (using [judgy](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py) library).
-
-\<aside\>
-The corrected true success rate ($\\hat{\\theta}$) represents the judge's accuracy, reflecting how well its decisions align with human expert labels. For instance, if $\\hat{\\theta} = 1$, the judge is 100% aligned with the ground truth. The confidence interval provides a range of certainty, expressed as: "You can be $\\hat{\\theta}$ [LB, UB] certain of the judge’s decisions." This $\\hat{\\theta}$ is the key metric for the LLM-as-Judge's alignment, allowing it to reliably assess the LLM's performance against the specific failure mode.
-\</aside\>
+        - The raw pass rate (\\(p_obs\\)) = average of new trace predictions.
+        - The corrected true success rate (\\(\hat{\theta}\\)) (using [judgy](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py) library).
+        - The 95% Confidence Interval (CI) for \\(\theta\\) (using [judgy](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py) library).
 
 ---
 
