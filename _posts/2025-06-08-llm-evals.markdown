@@ -97,13 +97,59 @@ Given the different nature of LLM outputs, there are two primary types of automa
 * **How They Work:** These evaluators use programmatic logic (e.g., Python scripts, regex, JSON schema validation) to deterministically compare the AI's structured output against a predefined ground truth or set of rules.
 * **Alignment:** They are deterministic, ensuring 100% alignment with the defined ground truth when the output format and expected values are precise, making them highly reliable for labeling evaluation datasets automatically.
 * **Considerations:** They are efficient and fair for production use as long as their latency is minimal.
+* **Metric:** Pass/Success Rate ( \\(p_obs\\) )
 
 #### LLM-as-Judge Evaluators
 
 * **Primarily Used For:** Generative outputs.
 * **How They Work:** You build this evaluator for each single, narrowly scoped failure mode. A separate LLM (the "judge") is prompted with the user query, the AI's response, and a clear rubric or set of criteria. The judge then assesses the response and assigns a "Pass" or "Fail" label (or a score).
 * **Alignment:** Since LLMs are inherently non-deterministic, you need to calibrate the LLM-as-Judge evaluator to align its judgments with human expert ground truth labels through careful prompt engineering and validation.
-* **Considerations:** Implementing LLM-as-Judge evaluators can be computationally expensive and increase latency. Therefore, they are typically reserved for critical failure modes that absolutely need to be mitigated and where human-like nuanced judgment is essential.
+* **Considerations:** Best used only for evaluation purposes. While optional for production, be mindful of additional latency and cost. If an LLM judge flags a response in production, you can show it, regenerate a new response, or explain the failure to the user.
+* **Metric:**: Corrected true success rate (\\(\hat{\theta}\\))
+
+### Aligning LLM-as-Judge Evaluators
+
+Here are the steps to align an LLM-as-Judge evaluator, assuming you already have traces on your evaluation dataset after performing the "Analyze" step:
+
+1. **Define the Failure Mode to Evaluate:** Clearly identify the specific failure mode you want the LLM-as-Judge to evaluate (e.g., "hallucinations," "irrelevant responses").
+2. **Manually Label Evaluation Dataset:** For the defined failure mode, manually label a subset of your evaluation dataset with "Pass" or "Fail" based on human expert judgment. This creates your ground truth.
+3.  **Train-Dev-Test Split:** Divide your manually labeled dataset into distinct sets. You can use random splitting or [stratified splitting](https://github.com/ai-evals-course/recipe-chatbot/blob/main/homeworks/hw3/scripts/split_data.py) (to ensure similar label distribution across sets).
+    * **Training Set (15% of labels):**
+        * **Purpose:** Provides the clear "Pass" and "Fail" few-shot examples you put directly into your judge's prompt.
+    * **Development (Dev) Set (40% of labels):**
+        * **Purpose:** To iteratively test and refine your judge prompt.
+        * Compare judge's output (Pass/Fail) against your human labels for this set.
+        * **NEVER** include Dev Set examples in the judge prompt itself!
+    * **Test Set (45% of labels):**
+        * **Purpose:** Final, unbiased evaluation of the judge's accuracy (TPR/TNR) *after* all prompt tuning is done.
+        * **NEVER** look at this set during prompt development!
+5. [Train the LLM-as-Judge evaluator](https://github.com/ai-evals-course/recipe-chatbot/blob/main/homeworks/hw3/scripts/develop_judge.py)
+    1. **Develop Judge Prompt:** Craft a prompt for the LLM-as-Judge that includes:
+        - The specific task/criterion (focused on one specific failure mode).
+        - Precise "Pass/Fail" definitions.
+        - 2-3 clear few-shot examples (input, AI agent output, desired judge reasoning, and "Pass/Fail" label) taken from your training set.
+        - The structured output format you expect from the judge (e.g., JSON with reasoning and answer).
+    2. **Evaluate on Dev Set:** Run the LLM-as-Judge on the development set and calculate its True Positive Rate (TPR) and True Negative Rate (TNR).
+    3. **Save Judge Prompt and Predictions:** Store the judge prompt, its predictions, and the performance metrics from the development set evaluation.
+    4. **Improve LLM Judge:** Iteratively refine the judge prompt (e.g., simplify criteria, improve examples) or consider using a more capable LLM as the judge if performance is not satisfactory.
+    5. **Repeat:** Continue refining and evaluating on the development set until TPR and TNR are satisfactory (e.g., >90%).
+6. [Evaluate on Test Dataset:](https://github.com/ai-evals-course/recipe-chatbot/blob/main/homeworks/hw3/scripts/evaluate_judge.py) Once satisfied with the development set performance, evaluate the LLM-as-Judge on the unseen test dataset.
+    - Metrics: True Positive Rate (TPR), True Negative Rate (TNR)
+    - Optional: Balanced Accuracy ((TPR+TNR)/2), # of Total Predictions, # of Correct Predictions, Accuracy
+    - Save the test labels and predictions. These will be used later to calculate the judge's corrected true success rate.
+  
+### Calculating the Corrected True Success Rate (\\(\hat{\theta}\\))
+
+Unlike code-based evaluators that provide a direct pass rate, LLM-as-Judge evaluators require a more nuanced metric to reflect their alignment with human judgment. The corrected true success rate (\\(\hat{\theta}\\)) accounts for the judge's accuracy against human expert labels, providing a more reliable measure of your AI system's performance.
+
+Here's how to calculate the metric ([Measure on “New” traces](https://github.com/ai-evals-course/recipe-chatbot/blob/main/homeworks/hw3/scripts/run_full_evaluation.py)):
+
+1. **Prepare Traces:** Use all the labeled traces or new production traces.
+2. **Run Judge:** Run the LLM-as-Judge on these traces to get its predictions (binary 1s/0s for Pass/Fail).
+3. **Calculate Corrected True Success Rate:** Using the test labels, test predictions, and the new trace predictions, calculate and save:
+    - The raw pass rate (\\(p_obs\\)) = average of new trace predictions.
+    - The corrected true success rate (\\(\hat{\theta}\\)) (using [judgy](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py) library).
+    - The 95% Confidence Interval (CI) for \\(\theta\\) (using [judgy](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py) library).
 
 ---
 
