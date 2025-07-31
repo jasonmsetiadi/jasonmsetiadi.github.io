@@ -132,15 +132,16 @@ You can use random splitting or [stratified splitting](https://github.com/jasonm
   
 ### Calculating the Corrected True Success Rate (\\(\hat{\theta}\\))
 
-The corrected true success rate (\\(\hat{\theta}\\)) represents the judge's accuracy, reflecting how well its decisions align with human expert labels. For instance, if $\\hat{\\theta} = 1$, the judge is 100% aligned with the ground truth. The confidence interval provides a range of certainty, expressed as: "You can be \\(\hat{\theta}\\) [LB, UB] certain of the judge’s decisions." This \\(\hat{\theta}\\) is the key metric for the LLM-as-Judge's alignment, allowing it to reliably assess the LLM's performance against the specific failure mode.
+Unlike code-based evaluators that provide a direct pass rate, LLM-as-Judge evaluators require a more nuanced metric to reflect their alignment with human judgment. The corrected true success rate (\\(\hat{\theta}\\)) accounts for the judge's accuracy against human expert labels, providing a more reliable measure of your AI system's performance.
 
 Here's how to calculate the metric ([Measure on “New” traces](https://github.com/jasonmsetiadi/recipe-chatbot/blob/main/homeworks/hw3/scripts/run_full_evaluation.py)):
-    1. **Prepare Traces:** Use all the labeled traces or new production traces.
-    2. **Run Judge:** Run the LLM-as-Judge on these traces to get its predictions (binary 1s/0s for Pass/Fail).
-    3. **Calculate Corrected True Success Rate:** Using the test labels, test predictions, and the new trace predictions, calculate and save:
-        - The raw pass rate (\\(p_obs\\)) = average of new trace predictions.
-        - The corrected true success rate (\\(\hat{\theta}\\)) (using [judgy](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py) library).
-        - The 95% Confidence Interval (CI) for \\(\theta\\) (using [judgy](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py) library).
+
+1. **Prepare Traces:** Use all the labeled traces or new production traces.
+2. **Run Judge:** Run the LLM-as-Judge on these traces to get its predictions (binary 1s/0s for Pass/Fail).
+3. **Calculate Corrected True Success Rate:** Using the test labels, test predictions, and the new trace predictions, calculate and save:
+    - The raw pass rate (\\(p_obs\\)) = average of new trace predictions.
+    - The corrected true success rate (\\(\hat{\theta}\\)) (using [judgy](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py) library).
+    - The 95% Confidence Interval (CI) for \\(\theta\\) (using [judgy](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py) library).
 
 ---
 
