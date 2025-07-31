@@ -113,9 +113,17 @@ Here are the steps to align an LLM-as-Judge evaluator, assuming you already have
 
 1. **Define the Failure Mode to Evaluate:** Clearly identify the specific failure mode you want the LLM-as-Judge to evaluate (e.g., "hallucinations," "irrelevant responses").
 2. **Manually Label Evaluation Dataset:** For the defined failure mode, manually label a subset of your evaluation dataset with "Pass" or "Fail" based on human expert judgment. This creates your ground truth.
-3. **Train-Dev-Test Split:** Divide your manually labeled dataset into training (15%), development (40%), and test (45%) sets. 
-You can use random splitting or [stratified splitting](https://github.com/jasonmsetiadi/recipe-chatbot/blob/main/homeworks/hw3/scripts/split_data.py) (to ensure similar label distribution across sets).
-4. [Train the LLM-as-Judge evaluator](https://github.com/jasonmsetiadi/recipe-chatbot/blob/main/homeworks/hw3/scripts/develop_judge.py)
+3.  **Train-Dev-Test Split:** Divide your manually labeled dataset into distinct sets. You can use random splitting or [stratified splitting](https://github.com/jasonmsetiadi/recipe-chatbot/blob/main/homeworks/hw3/scripts/split_data.py) (to ensure similar label distribution across sets).
+    * **Training Set (15% of labels):**
+        * **Purpose:** Provides the clear "Pass" and "Fail" few-shot examples you put directly into your judge's prompt.
+    * **Development (Dev) Set (40% of labels):**
+        * **Purpose:** To iteratively test and refine your judge prompt.
+        * Compare judge's output (Pass/Fail) against your human labels for this set.
+        * **NEVER** include Dev Set examples in the judge prompt itself!
+    * **Test Set (45% of labels):**
+        * **Purpose:** Final, unbiased evaluation of the judge's accuracy (TPR/TNR) *after* all prompt tuning is done.
+        * **NEVER** look at this set during prompt development!
+5. [Train the LLM-as-Judge evaluator](https://github.com/jasonmsetiadi/recipe-chatbot/blob/main/homeworks/hw3/scripts/develop_judge.py)
     1. **Develop Judge Prompt:** Craft a prompt for the LLM-as-Judge that includes:
         - The specific task/criterion (focused on one specific failure mode).
         - Precise "Pass/Fail" definitions.
@@ -125,7 +133,7 @@ You can use random splitting or [stratified splitting](https://github.com/jasonm
     3. **Save Judge Prompt and Predictions:** Store the judge prompt, its predictions, and the performance metrics from the development set evaluation.
     4. **Improve LLM Judge:** Iteratively refine the judge prompt (e.g., simplify criteria, improve examples) or consider using a more capable LLM as the judge if performance is not satisfactory.
     5. **Repeat:** Continue refining and evaluating on the development set until TPR and TNR are satisfactory (e.g., >90%).
-5. [Evaluate on Test Dataset:](https://github.com/jasonmsetiadi/recipe-chatbot/blob/main/homeworks/hw3/scripts/evaluate_judge.py) Once satisfied with the development set performance, evaluate the LLM-as-Judge on the unseen test dataset.
+6. [Evaluate on Test Dataset:](https://github.com/jasonmsetiadi/recipe-chatbot/blob/main/homeworks/hw3/scripts/evaluate_judge.py) Once satisfied with the development set performance, evaluate the LLM-as-Judge on the unseen test dataset.
     - Metrics: True Positive Rate (TPR), True Negative Rate (TNR)
     - Optional: Balanced Accuracy ((TPR+TNR)/2), # of Total Predictions, # of Correct Predictions, Accuracy
     - Save the test labels and predictions. These will be used later to calculate the judge's corrected true success rate.
