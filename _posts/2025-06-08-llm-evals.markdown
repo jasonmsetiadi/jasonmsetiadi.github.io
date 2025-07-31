@@ -4,7 +4,7 @@ comments: true
 title: "LLM Evaluation Lifecycle"
 excerpt: "Build robust evaluation life cycle for your LLM applications."
 date:   2025-06-08 07:00:00
-mathjax: false
+mathjax: true
 ---
 
 The moat behind every successful AI product is the robust evaluation, or "Evals". This is what sets your product apart from all other competitors. Through doing Evals, you get a better understanding of your users' and customers' needs more than anyone else. You learn what they want from your product, identify where your product falls short, and continuously make concrete improvements. This continuous feedback loop of evaluation and improvement is the key to building a truly exceptional product.
