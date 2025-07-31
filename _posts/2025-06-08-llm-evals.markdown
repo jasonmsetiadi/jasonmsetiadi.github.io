@@ -97,7 +97,7 @@ Given the different nature of LLM outputs, there are two primary types of automa
 * **How They Work:** These evaluators use programmatic logic (e.g., Python scripts, regex, JSON schema validation) to deterministically compare the AI's structured output against a predefined ground truth or set of rules.
 * **Alignment:** They are deterministic, ensuring 100% alignment with the defined ground truth when the output format and expected values are precise, making them highly reliable for labeling evaluation datasets automatically.
 * **Considerations:** They are efficient and fair for production use as long as their latency is minimal.
-* **Metric:** Pass/Success Rate ( \\(p_obs\\) )
+* **Metric:** Pass/Success Rate ( \\(p_{\text{obs}}\\) )
 
 #### LLM-as-Judge Evaluators
 
@@ -147,7 +147,7 @@ Here's how to calculate the metric ([Measure on “New” traces](https://github
 1. **Prepare Traces:** Use all the labeled traces or new production traces.
 2. **Run Judge:** Run the LLM-as-Judge on these traces to get its predictions (binary 1s/0s for Pass/Fail).
 3. **Calculate Corrected True Success Rate:** Using the test labels, test predictions, and the new trace predictions, calculate and save:
-    - The raw pass rate (\\(p_obs\\)) = average of new trace predictions.
+    - The raw pass rate (\\(p_{\text{obs}}\\)) = average of new trace predictions.
     - The corrected true success rate (\\(\hat{\theta}\\)) (using [judgy](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py) library).
     - The 95% Confidence Interval (CI) for \\(\theta\\) (using [judgy](https://github.com/ai-evals-course/judgy/blob/main/src/judgy/core.py) library).
 
