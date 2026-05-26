@@ -1,8 +1,8 @@
 ---
 layout: post
 comments: true
-title: "AGI"
-excerpt: "Modern frontier AI."
+title: "The Path to AGI"
+excerpt: "A concise history of the key research breakthroughs that sparked the possibility of AGI."
 date:   2025-06-08 07:00:00
 mathjax: true
 ---
@@ -12,7 +12,7 @@ The field of natural language processing (NLP) mainly relied on recurrent neural
 ## Breakthrough 0: Transformer
 
 <div style="text-align: center;">
-    <img src="/assets/agi/transformer.png" width="75%"/>
+    <img src="/assets/agi/transformer.png" width="50%"/>
 </div>
 
 Transformers solved these limitations using self-attention, a mechanism that allows each word to directly attend to any other word in the sequence regardless of distance. Instead of relying only on sequentially propagated information, the model can immediately focus on the most relevant parts of the context, greatly improving its ability to understand long-range dependencies and relationships across text. Because all words can interact simultaneously, Transformers also removed the need for sequential processing, enabling highly parallel computation on GPUs and making training dramatically faster and more scalable.
@@ -30,6 +30,10 @@ The original Transformer introduced an encoder–decoder architecture, where the
 Once the Transformer architecture was introduced, researchers realized that not all tasks require both an encoder and a decoder, leading to three major variants. Encoder-only models remove the decoder and are designed primarily for language understanding tasks. Instead of generating new sequences, these models produce contextual embeddings of text, making them well suited for tasks such as semantic search and information retrieval. They can also be adapted to downstream tasks by attaching lightweight prediction heads on top of encoder representations. Common applications include sequence classification tasks such as sentiment analysis, as well as token classification or sequence labeling tasks like POS tagging and NER.
 
 In contrast, decoder-only models remove the encoder and cross-attention components, relying solely on masked (causal) self-attention. They are trained using a next-token prediction objective, where each token is predicted based only on previously generated tokens. This autoregressive formulation makes decoder-only models highly effective for open-ended text generation and completion tasks. Finally, encoder–decoder models retain both components and are best suited for conditional generation tasks such as translation or summarization, where outputs depend heavily on a source input sequence.
+
+<div style="text-align: center;">
+    <img src="/assets/agi/three-architectures.png" width="50%"/>
+</div>
 
 ## Breakthrough 1: Self-supervised Pretraining + Fine-tuning (Transfer Learning)
 
