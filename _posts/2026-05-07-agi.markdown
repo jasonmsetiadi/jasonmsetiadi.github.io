@@ -3,7 +3,7 @@ layout: post
 comments: true
 title: "The Path to AGI"
 excerpt: "A concise history of the key research breakthroughs that sparked the possibility of AGI."
-date:   2025-06-08 07:00:00
+date:   2026-05-07 07:00:00
 mathjax: true
 ---
 
