@@ -146,13 +146,6 @@ a:visited { color: #205caa; }
 
 .home h1 { margin-bottom: 25px; }
 
-.availability-callout {
-  border-left: 4px solid #333;
-  padding: 12px 16px;
-  background-color: #f5f5f5;
-  font-weight: 400;
-}
-
 .posts { list-style-type: none; }
 
 .posts li { margin-bottom: 30px; }
